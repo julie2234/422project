@@ -1,0 +1,97 @@
+// !$*UTF8*$!
+{
+	08FB7793FE84155DC02AAC07 /* Project object */ = {
+		activeBuildConfigurationName = Debug;
+		activeExecutable = FAE84D391742180A007A31BE /* 422project */;
+		activeTarget = 8DD76FA90486AB0100D96B5E /* 422project */;
+		addToTargets = (
+			8DD76FA90486AB0100D96B5E /* 422project */,
+		);
+		codeSenseManager = FAE84D4017421829007A31BE /* Code sense */;
+		executables = (
+			FAE84D391742180A007A31BE /* 422project */,
+		);
+		perUserDictionary = {
+			PBXPerProjectTemplateStateSaveDate = 390207498;
+			PBXWorkspaceStateSaveDate = 390207498;
+		};
+		sourceControlManager = FAE84D3F17421829007A31BE /* Source Control */;
+		userBuildSettings = {
+		};
+	};
+	8DD76FA90486AB0100D96B5E /* 422project */ = {
+		activeExec = 0;
+		executables = (
+			FAE84D391742180A007A31BE /* 422project */,
+		);
+	};
+	FAE84D391742180A007A31BE /* 422project */ = {
+		isa = PBXExecutable;
+		activeArgIndices = (
+		);
+		argumentStrings = (
+		);
+		autoAttachOnCrash = 1;
+		breakpointsEnabled = 0;
+		configStateDict = {
+		};
+		customDataFormattersEnabled = 1;
+		dataTipCustomDataFormattersEnabled = 1;
+		dataTipShowTypeColumn = 1;
+		dataTipSortType = 0;
+		debuggerPlugin = GDBDebugging;
+		disassemblyDisplayState = 0;
+		enableDebugStr = 1;
+		environmentEntries = (
+		);
+		executableSystemSymbolLevel = 0;
+		executableUserSymbolLevel = 0;
+		libgmallocEnabled = 0;
+		name = 422project;
+		showTypeColumn = 0;
+		sourceDirectories = (
+		);
+	};
+	FAE84D3F17421829007A31BE /* Source Control */ = {
+		isa = PBXSourceControlManager;
+		fallbackIsa = XCSourceControlManager;
+		isSCMEnabled = 0;
+		scmConfiguration = {
+			repositoryNamesForRoots = {
+				"" = "";
+			};
+		};
+	};
+	FAE84D4017421829007A31BE /* Code sense */ = {
+		isa = PBXCodeSenseManager;
+		indexTemplatePath = "";
+	};
+	FAE84D411742182F007A31BE /* Process.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {519, 245}}";
+			sepNavSelRange = "{34, 0}";
+			sepNavVisRange = "{0, 43}";
+		};
+	};
+	FAE84D421742182F007A31BE /* Process.c */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {519, 245}}";
+			sepNavSelRange = "{34, 0}";
+			sepNavVisRange = "{0, 65}";
+		};
+	};
+	FAE84D4617421842007A31BE /* CPU.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {519, 245}}";
+			sepNavSelRange = "{30, 0}";
+			sepNavVisRange = "{0, 39}";
+		};
+	};
+	FAE84D4717421842007A31BE /* CPU.c */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {519, 245}}";
+			sepNavSelRange = "{30, 0}";
+			sepNavVisRange = "{0, 57}";
+		};
+	};
+}
