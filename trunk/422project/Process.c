@@ -8,8 +8,9 @@
 #include "Process.h"
 #include <stdio.h>
 
-int main (int argc, const char * argv[])
+ProcessPtr ProcessContructor()
 {
+	ProcessPtr temp_process = (ProcessPtr) malloc(sizeOf(ProcessStr));
 
-    return 0;
+	return temp_process;
 }

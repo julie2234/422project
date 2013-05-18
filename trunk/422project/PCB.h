@@ -15,4 +15,6 @@ typedef struct pcb_str {
 						// anything else you need
 } PCBStr;
 
+typedef PCBStr* PCBPtr;
+
 

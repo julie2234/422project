@@ -23,3 +23,5 @@ typedef struct process_str {
 						// You can get fancy and make this an array of RequestTypeStr which contains the
 						// step number when issued, and a request type (e.g. 0=io, 1=sync, etc.)
 } ProcessStr;
+
+typedef ProcessStr* ProcessPtr;
