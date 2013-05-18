@@ -13,6 +13,7 @@
  * 				  3: Producer Process
  * 				  4: Consumer Process
  */
+
 typedef struct process_str {
 	int proc_type;       // code for process type, e.g. 0=compute, 1=i0, 2=keyboard, etc.
 	int	no_steps;		// number of time steps before resetting to 0 - number of instructions
