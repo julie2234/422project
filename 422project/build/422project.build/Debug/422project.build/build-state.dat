@@ -1,0 +1,328 @@
+T422project
+v7
+r0
+t390634958.662714
+cCheck dependencies
+cCompileC build/422project.build/Debug/422project.build/Objects-normal/x86_64/process.o /Users/macbook/Desktop/TCSS422/422/422project/process.c normal x86_64 c com.apple.compilers.gcc.4_2
+cCompileC build/422project.build/Debug/422project.build/Objects-normal/x86_64/CPU.o /Users/macbook/Desktop/TCSS422/422/422project/CPU.c normal x86_64 c com.apple.compilers.gcc.4_2
+cCompileC build/422project.build/Debug/422project.build/Objects-normal/x86_64/PCB.o /Users/macbook/Desktop/TCSS422/422/422project/PCB.c normal x86_64 c com.apple.compilers.gcc.4_2
+cCompileC build/422project.build/Debug/422project.build/Objects-normal/x86_64/controller.o /Users/macbook/Desktop/TCSS422/422/422project/controller.c normal x86_64 c com.apple.compilers.gcc.4_2
+cCompileC build/422project.build/Debug/422project.build/Objects-normal/x86_64/mutex.o /Users/macbook/Desktop/TCSS422/422/422project/mutex.c normal x86_64 c com.apple.compilers.gcc.4_2
+cCompileC build/422project.build/Debug/422project.build/Objects-normal/x86_64/condVar.o /Users/macbook/Desktop/TCSS422/422/422project/condVar.c normal x86_64 c com.apple.compilers.gcc.4_2
+cLd /Users/macbook/Desktop/TCSS422/422/422project/build/Debug/422project normal x86_64
+
+N/Developer/SDKs/MacOSX10.6.sdk
+c000000004ABBF0FD00000000000000EE
+t1253830909
+s238
+
+N/Developer/SDKs/MacOSX10.6.sdk/usr/include/stdio.h
+c000000004A5C14A70000000000004174
+t1247548583
+s16756
+
+N/Developer/SDKs/MacOSX10.6.sdk/usr/include/stdlib.h
+c000000004A5C14A70000000000002DF5
+t1247548583
+s11765
+
+N/Users/macbook/Desktop/TCSS422/422/422project/CPU.c
+c0000000051983C980000000000000112
+t1368931480
+s274
+i"CPU.h"
+i<stdio.h>
+i<stdlib.h>
+
+N/Users/macbook/Desktop/TCSS422/422/422project/CPU.h
+c0000000051984BAF00000000000000E4
+t1368935343
+s228
+
+N/Users/macbook/Desktop/TCSS422/422/422project/PCB.c
+c0000000051985FE800000000000002B8
+t1368940520
+s696
+i"PCB.h"
+i<stdio.h>
+i<stdlib.h>
+
+N/Users/macbook/Desktop/TCSS422/422/422project/PCB.h
+c00000000519844B0000000000000025B
+t1368933552
+s603
+i"process.h"
+
+N/Users/macbook/Desktop/TCSS422/422/422project/Process.c
+c000000005198287D00000000000000D2
+t1368926333
+s210
+i"Process.h"
+i<stdio.h>
+
+N/Users/macbook/Desktop/TCSS422/422/422project/Process.h
+c000000005198287D0000000000000396
+t1368926333
+s918
+
+N/Users/macbook/Desktop/TCSS422/422/422project/bool.h
+c0000000051983A35000000000000005F
+t1368930869
+s95
+
+N/Users/macbook/Desktop/TCSS422/422/422project/build/422project.build/Debug/422project.build/Objects-normal/x86_64/422project.LinkFileList
+c0000000051985FAD00000000000002E1
+t1368940461
+s737
+
+N/Users/macbook/Desktop/TCSS422/422/422project/build/422project.build/Debug/422project.build/Objects-normal/x86_64/CPU.o
+t1368935343
+s2676
+
+N/Users/macbook/Desktop/TCSS422/422/422project/build/422project.build/Debug/422project.build/Objects-normal/x86_64/PCB.o
+t1368940520
+s3260
+
+N/Users/macbook/Desktop/TCSS422/422/422project/build/422project.build/Debug/422project.build/Objects-normal/x86_64/Process.o
+t2
+s0
+
+N/Users/macbook/Desktop/TCSS422/422/422project/build/422project.build/Debug/422project.build/Objects-normal/x86_64/condVar.o
+t1368940461
+s2732
+
+N/Users/macbook/Desktop/TCSS422/422/422project/build/422project.build/Debug/422project.build/Objects-normal/x86_64/controller.o
+t1368942158
+s4644
+
+N/Users/macbook/Desktop/TCSS422/422/422project/build/422project.build/Debug/422project.build/Objects-normal/x86_64/main.o
+t2
+s0
+
+N/Users/macbook/Desktop/TCSS422/422/422project/build/422project.build/Debug/422project.build/Objects-normal/x86_64/mutex.o
+t1368940461
+s2744
+
+N/Users/macbook/Desktop/TCSS422/422/422project/build/422project.build/Debug/422project.build/Objects-normal/x86_64/process.o
+t1368941970
+s3796
+
+N/Users/macbook/Desktop/TCSS422/422/422project/build/422project.build/Debug/422project.build/Objects-normal/x86_64/queue.o
+t1368930870
+s5032
+
+N/Users/macbook/Desktop/TCSS422/422/422project/build/Debug/422project
+t1368942158
+s11344
+
+N/Users/macbook/Desktop/TCSS422/422/422project/condVar.c
+c0000000051985FAD0000000000000136
+t1368940461
+s310
+i"condVar.h"
+i<stdio.h>
+i<stdlib.h>
+
+N/Users/macbook/Desktop/TCSS422/422/422project/condVar.h
+c0000000051985FAD0000000000000118
+t1368940461
+s280
+
+N/Users/macbook/Desktop/TCSS422/422/422project/controller.c
+c000000005198664E00000000000003EC
+t1368942158
+s1004
+i"controller.h"
+i<stdio.h>
+i<stdlib.h>
+
+N/Users/macbook/Desktop/TCSS422/422/422project/controller.h
+c0000000051985FAD00000000000001B0
+t1368940461
+s432
+i"PCB.h"
+i"process.h"
+
+N/Users/macbook/Desktop/TCSS422/422/422project/main.c
+c000000005191E08A0000000000000089
+t1368514698
+s137
+i<stdio.h>
+
+N/Users/macbook/Desktop/TCSS422/422/422project/mutex.c
+c0000000051985FAD0000000000000124
+t1368940461
+s292
+i"mutex.h"
+i<stdio.h>
+i<stdlib.h>
+
+N/Users/macbook/Desktop/TCSS422/422/422project/mutex.h
+c0000000051985FAD000000000000010A
+t1368940461
+s266
+
+N/Users/macbook/Desktop/TCSS422/422/422project/process.c
+c000000005198659200000000000002EE
+t1368941970
+s750
+i"process.h"
+i<stdio.h>
+i<stdlib.h>
+
+N/Users/macbook/Desktop/TCSS422/422/422project/process.h
+c00000000519844720000000000000173
+t1368933490
+s371
+
+N/Users/macbook/Desktop/TCSS422/422/422project/queue.c
+c0000000051983A3500000000000005D1
+t1368930869
+s1489
+i"queue.h"
+i"bool.h"
+
+N/Users/macbook/Desktop/TCSS422/422/422project/queue.h
+c0000000051983A3500000000000003AA
+t1368930869
+s938
+
+CCheck dependencies
+r0
+lSLF07#2@18"Check dependencies390634958#390634958#0(0"0(0#1#0"8622116064#0"0#
+
+CCompileC build/422project.build/Debug/422project.build/Objects-normal/x86_64/CPU.o /Users/macbook/Desktop/TCSS422/422/422project/CPU.c normal x86_64 c com.apple.compilers.gcc.4_2
+s390628143.766384
+e390628143.831101
+r1
+xCompileC
+xbuild/422project.build/Debug/422project.build/Objects-normal/x86_64/CPU.o
+x/Users/macbook/Desktop/TCSS422/422/422project/CPU.c
+xnormal
+xx86_64
+xc
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@59"Compile /Users/macbook/Desktop/TCSS422/422/422project/CPU.c390628143#390628143#0(0"0(0#0#51"/Users/macbook/Desktop/TCSS422/422/422project/CPU.c8622647264#1399"    cd /Users/macbook/Desktop/TCSS422/422/422project    setenv LANG en_US.US-ASCII    /Developer/usr/bin/gcc-4.2 -x c -arch x86_64 -fmessage-length=0 -pipe -std=gnu99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/SDKs/MacOSX10.6.sdk -mfix-and-continue -mmacosx-version-min=10.6 -gdwarf-2 -iquote /Users/macbook/Desktop/TCSS422/422/422project/build/422project.build/Debug/422project.build/422project-generated-files.hmap -I/Users/macbook/Desktop/TCSS422/422/422project/build/422project.build/Debug/422project.build/422project-own-target-headers.hmap -I/Users/macbook/Desktop/TCSS422/422/422project/build/422project.build/Debug/422project.build/422project-all-target-headers.hmap -iquote /Users/macbook/Desktop/TCSS422/422/422project/build/422project.build/Debug/422project.build/422project-project-headers.hmap -F/Users/macbook/Desktop/TCSS422/422/422project/build/Debug -I/Users/macbook/Desktop/TCSS422/422/422project/build/Debug/include -I/Users/macbook/Desktop/TCSS422/422/422project/build/422project.build/Debug/422project.build/DerivedSources/x86_64 -I/Users/macbook/Desktop/TCSS422/422/422project/build/422project.build/Debug/422project.build/DerivedSources -c /Users/macbook/Desktop/TCSS422/422/422project/CPU.c -o /Users/macbook/Desktop/TCSS422/422/422project/build/422project.build/Debug/422project.build/Objects-normal/x86_64/CPU.o0#
+
+CCompileC build/422project.build/Debug/422project.build/Objects-normal/x86_64/PCB.o /Users/macbook/Desktop/TCSS422/422/422project/PCB.c normal x86_64 c com.apple.compilers.gcc.4_2
+s390633320.858498
+e390633320.919075
+r1
+xCompileC
+xbuild/422project.build/Debug/422project.build/Objects-normal/x86_64/PCB.o
+x/Users/macbook/Desktop/TCSS422/422/422project/PCB.c
+xnormal
+xx86_64
+xc
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@59"Compile /Users/macbook/Desktop/TCSS422/422/422project/PCB.c390633320#390633320#0(315"/Users/macbook/Desktop/TCSS422/422/422project/PCB.c: In function 'pcbConstruct':/Users/macbook/Desktop/TCSS422/422/422project/PCB.c:16: warning: implicit declaration of function 'processContruct'/Users/macbook/Desktop/TCSS422/422/422project/PCB.c:16: warning: assignment makes pointer from integer without a cast2(22@50"Implicit declaration of function 'processContruct'390633320#81#116#0(6@51"/Users/macbook/Desktop/TCSS422/422/422project/PCB.c390633320#16#0#16#0#36"implicit declaration of function '*'0(22@52"Assignment makes pointer from integer without a cast390633320#197#118#0(6@51"/Users/macbook/Desktop/TCSS422/422/422project/PCB.c390633320#16#0#16#0#0"0(0#0#51"/Users/macbook/Desktop/TCSS422/422/422project/PCB.c8622884736#1399"    cd /Users/macbook/Desktop/TCSS422/422/422project    setenv LANG en_US.US-ASCII    /Developer/usr/bin/gcc-4.2 -x c -arch x86_64 -fmessage-length=0 -pipe -std=gnu99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/SDKs/MacOSX10.6.sdk -mfix-and-continue -mmacosx-version-min=10.6 -gdwarf-2 -iquote /Users/macbook/Desktop/TCSS422/422/422project/build/422project.build/Debug/422project.build/422project-generated-files.hmap -I/Users/macbook/Desktop/TCSS422/422/422project/build/422project.build/Debug/422project.build/422project-own-target-headers.hmap -I/Users/macbook/Desktop/TCSS422/422/422project/build/422project.build/Debug/422project.build/422project-all-target-headers.hmap -iquote /Users/macbook/Desktop/TCSS422/422/422project/build/422project.build/Debug/422project.build/422project-project-headers.hmap -F/Users/macbook/Desktop/TCSS422/422/422project/build/Debug -I/Users/macbook/Desktop/TCSS422/422/422project/build/Debug/include -I/Users/macbook/Desktop/TCSS422/422/422project/build/422project.build/Debug/422project.build/DerivedSources/x86_64 -I/Users/macbook/Desktop/TCSS422/422/422project/build/422project.build/Debug/422project.build/DerivedSources -c /Users/macbook/Desktop/TCSS422/422/422project/PCB.c -o /Users/macbook/Desktop/TCSS422/422/422project/build/422project.build/Debug/422project.build/Objects-normal/x86_64/PCB.o0#
+
+CCompileC build/422project.build/Debug/422project.build/Objects-normal/x86_64/Process.o /Users/macbook/Desktop/TCSS422/422/422project/Process.c normal x86_64 c com.apple.compilers.gcc.4_2
+s390207675.048141
+e390207675.363413
+r1
+xCompileC
+xbuild/422project.build/Debug/422project.build/Objects-normal/x86_64/Process.o
+x/Users/macbook/Desktop/TCSS422/422/422project/Process.c
+xnormal
+xx86_64
+xc
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@63"Compile /Users/macbook/Desktop/TCSS422/422/422project/Process.c390207675#390207675#0(0"0(0#0#55"/Users/macbook/Desktop/TCSS422/422/422project/Process.c8660259774160596992#1407"    cd /Users/macbook/Desktop/TCSS422/422/422project    setenv LANG en_US.US-ASCII    /Developer/usr/bin/gcc-4.2 -x c -arch x86_64 -fmessage-length=0 -pipe -std=gnu99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/SDKs/MacOSX10.6.sdk -mfix-and-continue -mmacosx-version-min=10.6 -gdwarf-2 -iquote /Users/macbook/Desktop/TCSS422/422/422project/build/422project.build/Debug/422project.build/422project-generated-files.hmap -I/Users/macbook/Desktop/TCSS422/422/422project/build/422project.build/Debug/422project.build/422project-own-target-headers.hmap -I/Users/macbook/Desktop/TCSS422/422/422project/build/422project.build/Debug/422project.build/422project-all-target-headers.hmap -iquote /Users/macbook/Desktop/TCSS422/422/422project/build/422project.build/Debug/422project.build/422project-project-headers.hmap -F/Users/macbook/Desktop/TCSS422/422/422project/build/Debug -I/Users/macbook/Desktop/TCSS422/422/422project/build/Debug/include -I/Users/macbook/Desktop/TCSS422/422/422project/build/422project.build/Debug/422project.build/DerivedSources/x86_64 -I/Users/macbook/Desktop/TCSS422/422/422project/build/422project.build/Debug/422project.build/DerivedSources -c /Users/macbook/Desktop/TCSS422/422/422project/Process.c -o /Users/macbook/Desktop/TCSS422/422/422project/build/422project.build/Debug/422project.build/Objects-normal/x86_64/Process.o0#
+
+CCompileC build/422project.build/Debug/422project.build/Objects-normal/x86_64/condVar.o /Users/macbook/Desktop/TCSS422/422/422project/condVar.c normal x86_64 c com.apple.compilers.gcc.4_2
+s390633261.419889
+e390633261.471258
+r1
+xCompileC
+xbuild/422project.build/Debug/422project.build/Objects-normal/x86_64/condVar.o
+x/Users/macbook/Desktop/TCSS422/422/422project/condVar.c
+xnormal
+xx86_64
+xc
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@63"Compile /Users/macbook/Desktop/TCSS422/422/422project/condVar.c390633261#390633261#0(0"0(0#0#55"/Users/macbook/Desktop/TCSS422/422/422project/condVar.c8623046496#1407"    cd /Users/macbook/Desktop/TCSS422/422/422project    setenv LANG en_US.US-ASCII    /Developer/usr/bin/gcc-4.2 -x c -arch x86_64 -fmessage-length=0 -pipe -std=gnu99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/SDKs/MacOSX10.6.sdk -mfix-and-continue -mmacosx-version-min=10.6 -gdwarf-2 -iquote /Users/macbook/Desktop/TCSS422/422/422project/build/422project.build/Debug/422project.build/422project-generated-files.hmap -I/Users/macbook/Desktop/TCSS422/422/422project/build/422project.build/Debug/422project.build/422project-own-target-headers.hmap -I/Users/macbook/Desktop/TCSS422/422/422project/build/422project.build/Debug/422project.build/422project-all-target-headers.hmap -iquote /Users/macbook/Desktop/TCSS422/422/422project/build/422project.build/Debug/422project.build/422project-project-headers.hmap -F/Users/macbook/Desktop/TCSS422/422/422project/build/Debug -I/Users/macbook/Desktop/TCSS422/422/422project/build/Debug/include -I/Users/macbook/Desktop/TCSS422/422/422project/build/422project.build/Debug/422project.build/DerivedSources/x86_64 -I/Users/macbook/Desktop/TCSS422/422/422project/build/422project.build/Debug/422project.build/DerivedSources -c /Users/macbook/Desktop/TCSS422/422/422project/condVar.c -o /Users/macbook/Desktop/TCSS422/422/422project/build/422project.build/Debug/422project.build/Objects-normal/x86_64/condVar.o0#
+
+CCompileC build/422project.build/Debug/422project.build/Objects-normal/x86_64/controller.o /Users/macbook/Desktop/TCSS422/422/422project/controller.c normal x86_64 c com.apple.compilers.gcc.4_2
+s390634958.556612
+e390634958.636026
+r1
+xCompileC
+xbuild/422project.build/Debug/422project.build/Objects-normal/x86_64/controller.o
+x/Users/macbook/Desktop/TCSS422/422/422project/controller.c
+xnormal
+xx86_64
+xc
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@66"Compile /Users/macbook/Desktop/TCSS422/422/422project/controller.c390634958#390634958#0(873"/Users/macbook/Desktop/TCSS422/422/422project/controller.c: In function 'main':/Users/macbook/Desktop/TCSS422/422/422project/controller.c:21: warning: implicit declaration of function 'pcbConstruct'/Users/macbook/Desktop/TCSS422/422/422project/controller.c:21: warning: assignment makes pointer from integer without a cast/Users/macbook/Desktop/TCSS422/422/422project/controller.c:22: warning: assignment makes pointer from integer without a cast/Users/macbook/Desktop/TCSS422/422/422project/controller.c:30: warning: implicit declaration of function 'scheduler'/Users/macbook/Desktop/TCSS422/422/422project/controller.c: At top level:/Users/macbook/Desktop/TCSS422/422/422project/controller.c:34: warning: conflicting types for 'scheduler'/Users/macbook/Desktop/TCSS422/422/422project/controller.c:30: warning: previous implicit declaration of 'scheduler' was here7(22@47"Implicit declaration of function 'pcbConstruct'390634958#80#120#0(6@58"/Users/macbook/Desktop/TCSS422/422/422project/controller.c390634958#21#0#21#0#36"implicit declaration of function '*'0(22@52"Assignment makes pointer from integer without a cast390634958#200#125#0(6@58"/Users/macbook/Desktop/TCSS422/422/422project/controller.c390634958#21#0#21#0#0"0(22@52"Assignment makes pointer from integer without a cast390634958#325#125#0(6@58"/Users/macbook/Desktop/TCSS422/422/422project/controller.c390634958#22#0#22#0#0"0(22@44"Implicit declaration of function 'scheduler'390634958#450#117#0(6@58"/Users/macbook/Desktop/TCSS422/422/422project/controller.c390634958#30#0#30#0#36"implicit declaration of function '*'0(23@13"At top level:390634958#567#74#0(6@58"/Users/macbook/Desktop/TCSS422/422/422project/controller.c390634958#0#0#0#0#0"0(22@33"Conflicting types for 'scheduler'390634958#641#106#0(6@58"/Users/macbook/Desktop/TCSS422/422/422project/controller.c390634958#34#0#34#0#25"conflicting types for '*'0(22@53"Previous implicit declaration of 'scheduler' was here390634958#747#126#0(6@58"/Users/macbook/Desktop/TCSS422/422/422project/controller.c390634958#30#0#30#0#45"previous implicit declaration of '*' was here0(0#0#58"/Users/macbook/Desktop/TCSS422/422/422project/controller.c8623318176#1413"    cd /Users/macbook/Desktop/TCSS422/422/422project    setenv LANG en_US.US-ASCII    /Developer/usr/bin/gcc-4.2 -x c -arch x86_64 -fmessage-length=0 -pipe -std=gnu99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/SDKs/MacOSX10.6.sdk -mfix-and-continue -mmacosx-version-min=10.6 -gdwarf-2 -iquote /Users/macbook/Desktop/TCSS422/422/422project/build/422project.build/Debug/422project.build/422project-generated-files.hmap -I/Users/macbook/Desktop/TCSS422/422/422project/build/422project.build/Debug/422project.build/422project-own-target-headers.hmap -I/Users/macbook/Desktop/TCSS422/422/422project/build/422project.build/Debug/422project.build/422project-all-target-headers.hmap -iquote /Users/macbook/Desktop/TCSS422/422/422project/build/422project.build/Debug/422project.build/422project-project-headers.hmap -F/Users/macbook/Desktop/TCSS422/422/422project/build/Debug -I/Users/macbook/Desktop/TCSS422/422/422project/build/Debug/include -I/Users/macbook/Desktop/TCSS422/422/422project/build/422project.build/Debug/422project.build/DerivedSources/x86_64 -I/Users/macbook/Desktop/TCSS422/422/422project/build/422project.build/Debug/422project.build/DerivedSources -c /Users/macbook/Desktop/TCSS422/422/422project/controller.c -o /Users/macbook/Desktop/TCSS422/422/422project/build/422project.build/Debug/422project.build/Objects-normal/x86_64/controller.o0#
+
+CCompileC build/422project.build/Debug/422project.build/Objects-normal/x86_64/main.o /Users/macbook/Desktop/TCSS422/422/422project/main.c normal x86_64 c com.apple.compilers.gcc.4_2
+r0
+
+CCompileC build/422project.build/Debug/422project.build/Objects-normal/x86_64/mutex.o /Users/macbook/Desktop/TCSS422/422/422project/mutex.c normal x86_64 c com.apple.compilers.gcc.4_2
+s390633261.341028
+e390633261.419544
+r1
+xCompileC
+xbuild/422project.build/Debug/422project.build/Objects-normal/x86_64/mutex.o
+x/Users/macbook/Desktop/TCSS422/422/422project/mutex.c
+xnormal
+xx86_64
+xc
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@61"Compile /Users/macbook/Desktop/TCSS422/422/422project/mutex.c390633261#390633261#0(0"0(0#0#53"/Users/macbook/Desktop/TCSS422/422/422project/mutex.c8621310528#1403"    cd /Users/macbook/Desktop/TCSS422/422/422project    setenv LANG en_US.US-ASCII    /Developer/usr/bin/gcc-4.2 -x c -arch x86_64 -fmessage-length=0 -pipe -std=gnu99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/SDKs/MacOSX10.6.sdk -mfix-and-continue -mmacosx-version-min=10.6 -gdwarf-2 -iquote /Users/macbook/Desktop/TCSS422/422/422project/build/422project.build/Debug/422project.build/422project-generated-files.hmap -I/Users/macbook/Desktop/TCSS422/422/422project/build/422project.build/Debug/422project.build/422project-own-target-headers.hmap -I/Users/macbook/Desktop/TCSS422/422/422project/build/422project.build/Debug/422project.build/422project-all-target-headers.hmap -iquote /Users/macbook/Desktop/TCSS422/422/422project/build/422project.build/Debug/422project.build/422project-project-headers.hmap -F/Users/macbook/Desktop/TCSS422/422/422project/build/Debug -I/Users/macbook/Desktop/TCSS422/422/422project/build/Debug/include -I/Users/macbook/Desktop/TCSS422/422/422project/build/422project.build/Debug/422project.build/DerivedSources/x86_64 -I/Users/macbook/Desktop/TCSS422/422/422project/build/422project.build/Debug/422project.build/DerivedSources -c /Users/macbook/Desktop/TCSS422/422/422project/mutex.c -o /Users/macbook/Desktop/TCSS422/422/422project/build/422project.build/Debug/422project.build/Objects-normal/x86_64/mutex.o0#
+
+CCompileC build/422project.build/Debug/422project.build/Objects-normal/x86_64/process.o /Users/macbook/Desktop/TCSS422/422/422project/process.c normal x86_64 c com.apple.compilers.gcc.4_2
+s390634770.521806
+e390634770.587210
+r1
+xCompileC
+xbuild/422project.build/Debug/422project.build/Objects-normal/x86_64/process.o
+x/Users/macbook/Desktop/TCSS422/422/422project/process.c
+xnormal
+xx86_64
+xc
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@63"Compile /Users/macbook/Desktop/TCSS422/422/422project/process.c390634770#390634770#0(0"0(0#0#55"/Users/macbook/Desktop/TCSS422/422/422project/process.c8621385056#1407"    cd /Users/macbook/Desktop/TCSS422/422/422project    setenv LANG en_US.US-ASCII    /Developer/usr/bin/gcc-4.2 -x c -arch x86_64 -fmessage-length=0 -pipe -std=gnu99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/SDKs/MacOSX10.6.sdk -mfix-and-continue -mmacosx-version-min=10.6 -gdwarf-2 -iquote /Users/macbook/Desktop/TCSS422/422/422project/build/422project.build/Debug/422project.build/422project-generated-files.hmap -I/Users/macbook/Desktop/TCSS422/422/422project/build/422project.build/Debug/422project.build/422project-own-target-headers.hmap -I/Users/macbook/Desktop/TCSS422/422/422project/build/422project.build/Debug/422project.build/422project-all-target-headers.hmap -iquote /Users/macbook/Desktop/TCSS422/422/422project/build/422project.build/Debug/422project.build/422project-project-headers.hmap -F/Users/macbook/Desktop/TCSS422/422/422project/build/Debug -I/Users/macbook/Desktop/TCSS422/422/422project/build/Debug/include -I/Users/macbook/Desktop/TCSS422/422/422project/build/422project.build/Debug/422project.build/DerivedSources/x86_64 -I/Users/macbook/Desktop/TCSS422/422/422project/build/422project.build/Debug/422project.build/DerivedSources -c /Users/macbook/Desktop/TCSS422/422/422project/process.c -o /Users/macbook/Desktop/TCSS422/422/422project/build/422project.build/Debug/422project.build/Objects-normal/x86_64/process.o0#
+
+CCompileC build/422project.build/Debug/422project.build/Objects-normal/x86_64/queue.o /Users/macbook/Desktop/TCSS422/422/422project/queue.c normal x86_64 c com.apple.compilers.gcc.4_2
+s390623670.073608
+e390623670.106172
+r1
+xCompileC
+xbuild/422project.build/Debug/422project.build/Objects-normal/x86_64/queue.o
+x/Users/macbook/Desktop/TCSS422/422/422project/queue.c
+xnormal
+xx86_64
+xc
+xcom.apple.compilers.gcc.4_2
+o/Users/macbook/Desktop/TCSS422/422/422project/queue.c:36: warning: return type defaults to 'int'
+o/Users/macbook/Desktop/TCSS422/422/422project/queue.c: In function 'init_queue':
+o/Users/macbook/Desktop/TCSS422/422/422project/queue.c:40: warning: control reaches end of non-void function
+o/Users/macbook/Desktop/TCSS422/422/422project/queue.c: At top level:
+o/Users/macbook/Desktop/TCSS422/422/422project/queue.c:43: warning: return type defaults to 'int'
+o/Users/macbook/Desktop/TCSS422/422/422project/queue.c: In function 'enqueue':
+o/Users/macbook/Desktop/TCSS422/422/422project/queue.c:45: warning: implicit declaration of function 'printf'
+o/Users/macbook/Desktop/TCSS422/422/422project/queue.c:45: warning: incompatible implicit declaration of built-in function 'printf'
+o/Users/macbook/Desktop/TCSS422/422/422project/queue.c:51: warning: control reaches end of non-void function
+o/Users/macbook/Desktop/TCSS422/422/422project/queue.c: In function 'dequeue':
+o/Users/macbook/Desktop/TCSS422/422/422project/queue.c:57: warning: incompatible implicit declaration of built-in function 'printf'
+o/Users/macbook/Desktop/TCSS422/422/422project/queue.c: At top level:
+o/Users/macbook/Desktop/TCSS422/422/422project/queue.c:74: warning: return type defaults to 'int'
+o/Users/macbook/Desktop/TCSS422/422/422project/queue.c: In function 'print_queue':
+o/Users/macbook/Desktop/TCSS422/422/422project/queue.c:80: warning: incompatible implicit declaration of built-in function 'printf'
+o/Users/macbook/Desktop/TCSS422/422/422project/queue.c:84: warning: incompatible implicit declaration of built-in function 'printf'
+o/Users/macbook/Desktop/TCSS422/422/422project/queue.c:75: warning: unused variable 'j'
+o/Users/macbook/Desktop/TCSS422/422/422project/queue.c:86: warning: control reaches end of non-void function
+lSLF07#2@61"Compile /Users/macbook/Desktop/TCSS422/422/422project/queue.c390623670#390623670#0(1792"/Users/macbook/Desktop/TCSS422/422/422project/queue.c:36: warning: return type defaults to 'int'/Users/macbook/Desktop/TCSS422/422/422project/queue.c: In function 'init_queue':/Users/macbook/Desktop/TCSS422/422/422project/queue.c:40: warning: control reaches end of non-void function/Users/macbook/Desktop/TCSS422/422/422project/queue.c: At top level:/Users/macbook/Desktop/TCSS422/422/422project/queue.c:43: warning: return type defaults to 'int'/Users/macbook/Desktop/TCSS422/422/422project/queue.c: In function 'enqueue':/Users/macbook/Desktop/TCSS422/422/422project/queue.c:45: warning: implicit declaration of function 'printf'/Users/macbook/Desktop/TCSS422/422/422project/queue.c:45: warning: incompatible implicit declaration of built-in function 'printf'/Users/macbook/Desktop/TCSS422/422/422project/queue.c:51: warning: control reaches end of non-void function/Users/macbook/Desktop/TCSS422/422/422project/queue.c: In function 'dequeue':/Users/macbook/Desktop/TCSS422/422/422project/queue.c:57: warning: incompatible implicit declaration of built-in function 'printf'/Users/macbook/Desktop/TCSS422/422/422project/queue.c: At top level:/Users/macbook/Desktop/TCSS422/422/422project/queue.c:74: warning: return type defaults to 'int'/Users/macbook/Desktop/TCSS422/422/422project/queue.c: In function 'print_queue':/Users/macbook/Desktop/TCSS422/422/422project/queue.c:80: warning: incompatible implicit declaration of built-in function 'printf'/Users/macbook/Desktop/TCSS422/422/422project/queue.c:84: warning: incompatible implicit declaration of built-in function 'printf'/Users/macbook/Desktop/TCSS422/422/422project/queue.c:75: warning: unused variable 'j'/Users/macbook/Desktop/TCSS422/422/422project/queue.c:86: warning: control reaches end of non-void function14(22@29"Return type defaults to 'int'390623670#0#97#0(6@53"/Users/macbook/Desktop/TCSS422/422/422project/queue.c390623669#36#0#36#0#0"0(22@40"Control reaches end of non-void function390623670#178#108#0(6@53"/Users/macbook/Desktop/TCSS422/422/422project/queue.c390623669#40#0#40#0#40"control reaches end of non-void function0(23@13"At top level:390623670#286#69#0(6@53"/Users/macbook/Desktop/TCSS422/422/422project/queue.c390623669#0#0#0#0#0"0(22@29"Return type defaults to 'int'390623670#355#97#0(6@53"/Users/macbook/Desktop/TCSS422/422/422project/queue.c390623669#43#0#43#0#0"0(22@41"Implicit declaration of function 'printf'390623670#530#109#0(6@53"/Users/macbook/Desktop/TCSS422/422/422project/queue.c390623669#45#0#45#0#36"implicit declaration of function '*'0(22@63"Incompatible implicit declaration of built-in function 'printf'390623670#639#131#0(6@53"/Users/macbook/Desktop/TCSS422/422/422project/queue.c390623669#45#0#45#0#0"0(22@40"Control reaches end of non-void function390623670#770#108#0(6@53"/Users/macbook/Desktop/TCSS422/422/422project/queue.c390623669#51#0#51#0#40"control reaches end of non-void function0(22@63"Incompatible implicit declaration of built-in function 'printf'390623670#956#131#0(6@53"/Users/macbook/Desktop/TCSS422/422/422project/queue.c390623669#57#0#57#0#0"0(23@13"At top level:390623670#1087#69#0(6@53"/Users/macbook/Desktop/TCSS422/422/422project/queue.c390623669#0#0#0#0#0"0(22@29"Return type defaults to 'int'390623670#1156#97#0(6@53"/Users/macbook/Desktop/TCSS422/422/422project/queue.c390623669#74#0#74#0#0"0(22@63"Incompatible implicit declaration of built-in function 'printf'390623670#1335#131#0(6@53"/Users/macbook/Desktop/TCSS422/422/422project/queue.c390623669#80#0#80#0#0"0(22@63"Incompatible implicit declaration of built-in function 'printf'390623670#1466#131#0(6@53"/Users/macbook/Desktop/TCSS422/422/422project/queue.c390623669#84#0#84#0#0"0(22@19"Unused variable 'j'390623670#1597#87#0(6@53"/Users/macbook/Desktop/TCSS422/422/422project/queue.c390623669#75#0#75#0#19"unused variable '*'0(22@40"Control reaches end of non-void function390623670#1684#108#0(6@53"/Users/macbook/Desktop/TCSS422/422/422project/queue.c390623669#86#0#86#0#40"control reaches end of non-void function0(0#0#53"/Users/macbook/Desktop/TCSS422/422/422project/queue.c8621555776#1403"    cd /Users/macbook/Desktop/TCSS422/422/422project    setenv LANG en_US.US-ASCII    /Developer/usr/bin/gcc-4.2 -x c -arch x86_64 -fmessage-length=0 -pipe -std=gnu99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/SDKs/MacOSX10.6.sdk -mfix-and-continue -mmacosx-version-min=10.6 -gdwarf-2 -iquote /Users/macbook/Desktop/TCSS422/422/422project/build/422project.build/Debug/422project.build/422project-generated-files.hmap -I/Users/macbook/Desktop/TCSS422/422/422project/build/422project.build/Debug/422project.build/422project-own-target-headers.hmap -I/Users/macbook/Desktop/TCSS422/422/422project/build/422project.build/Debug/422project.build/422project-all-target-headers.hmap -iquote /Users/macbook/Desktop/TCSS422/422/422project/build/422project.build/Debug/422project.build/422project-project-headers.hmap -F/Users/macbook/Desktop/TCSS422/422/422project/build/Debug -I/Users/macbook/Desktop/TCSS422/422/422project/build/Debug/include -I/Users/macbook/Desktop/TCSS422/422/422project/build/422project.build/Debug/422project.build/DerivedSources/x86_64 -I/Users/macbook/Desktop/TCSS422/422/422project/build/422project.build/Debug/422project.build/DerivedSources -c /Users/macbook/Desktop/TCSS422/422/422project/queue.c -o /Users/macbook/Desktop/TCSS422/422/422project/build/422project.build/Debug/422project.build/Objects-normal/x86_64/queue.o0#
+
+CLd /Users/macbook/Desktop/TCSS422/422/422project/build/Debug/422project normal x86_64
+s390634958.636260
+e390634958.662552
+r1
+xLd
+x/Users/macbook/Desktop/TCSS422/422/422project/build/Debug/422project
+xnormal
+xx86_64
+lSLF07#2@73"Link /Users/macbook/Desktop/TCSS422/422/422project/build/Debug/422project390634958#390634958#0(0"0(0#0#0"8622179488#545"    cd /Users/macbook/Desktop/TCSS422/422/422project    setenv MACOSX_DEPLOYMENT_TARGET 10.6    /Developer/usr/bin/gcc-4.2 -arch x86_64 -isysroot /Developer/SDKs/MacOSX10.6.sdk -L/Users/macbook/Desktop/TCSS422/422/422project/build/Debug -F/Users/macbook/Desktop/TCSS422/422/422project/build/Debug -filelist /Users/macbook/Desktop/TCSS422/422/422project/build/422project.build/Debug/422project.build/Objects-normal/x86_64/422project.LinkFileList -mmacosx-version-min=10.6 -o /Users/macbook/Desktop/TCSS422/422/422project/build/Debug/422project0#
+
