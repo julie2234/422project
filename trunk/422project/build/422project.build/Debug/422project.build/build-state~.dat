@@ -1,0 +1,112 @@
+T422project
+v7
+r0
+t390207675.727503
+cCheck dependencies
+cCompileC build/422project.build/Debug/422project.build/Objects-normal/x86_64/Process.o /Users/macbook/Desktop/TCSS422/422/422project/Process.c normal x86_64 c com.apple.compilers.gcc.4_2
+cCompileC build/422project.build/Debug/422project.build/Objects-normal/x86_64/CPU.o /Users/macbook/Desktop/TCSS422/422/422project/CPU.c normal x86_64 c com.apple.compilers.gcc.4_2
+cLd /Users/macbook/Desktop/TCSS422/422/422project/build/Debug/422project normal x86_64
+
+N/Developer/SDKs/MacOSX10.6.sdk
+c000000004ABBF0FD00000000000000EE
+t1253830909
+s238
+
+N/Developer/SDKs/MacOSX10.6.sdk/usr/include/stdio.h
+c000000004A5C14A70000000000004174
+t1247548583
+s16756
+
+N/Users/macbook/Desktop/TCSS422/422/422project/CPU.c
+c000000005191E13A0000000000000039
+t1368514874
+s57
+i"CPU.h"
+
+N/Users/macbook/Desktop/TCSS422/422/422project/CPU.h
+c000000005191E13A0000000000000027
+t1368514874
+s39
+
+N/Users/macbook/Desktop/TCSS422/422/422project/Process.c
+c000000005191E13A00000000000000C9
+t1368514874
+s201
+i"Process.h"
+i<stdio.h>
+
+N/Users/macbook/Desktop/TCSS422/422/422project/Process.h
+c000000005191E13A000000000000002B
+t1368514874
+s43
+
+N/Users/macbook/Desktop/TCSS422/422/422project/build/422project.build/Debug/422project.build/Objects-normal/x86_64/422project.LinkFileList
+c000000005191E13B00000000000000F4
+t1368514875
+s244
+
+N/Users/macbook/Desktop/TCSS422/422/422project/build/422project.build/Debug/422project.build/Objects-normal/x86_64/CPU.o
+t1368514875
+s1524
+
+N/Users/macbook/Desktop/TCSS422/422/422project/build/422project.build/Debug/422project.build/Objects-normal/x86_64/Process.o
+t1368514875
+s2692
+
+N/Users/macbook/Desktop/TCSS422/422/422project/build/422project.build/Debug/422project.build/Objects-normal/x86_64/main.o
+t2
+s0
+
+N/Users/macbook/Desktop/TCSS422/422/422project/build/Debug/422project
+t1368514875
+s8992
+
+N/Users/macbook/Desktop/TCSS422/422/422project/main.c
+c000000005191E08A0000000000000089
+t1368514698
+s137
+i<stdio.h>
+
+CCheck dependencies
+r0
+lSLF07#2@18"Check dependencies390207674#390207675#0(0"0(0#1#0"3343187568374212096#0"0#
+
+CCompileC build/422project.build/Debug/422project.build/Objects-normal/x86_64/CPU.o /Users/macbook/Desktop/TCSS422/422/422project/CPU.c normal x86_64 c com.apple.compilers.gcc.4_2
+s390207675.099888
+e390207675.363137
+r1
+xCompileC
+xbuild/422project.build/Debug/422project.build/Objects-normal/x86_64/CPU.o
+x/Users/macbook/Desktop/TCSS422/422/422project/CPU.c
+xnormal
+xx86_64
+xc
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@59"Compile /Users/macbook/Desktop/TCSS422/422/422project/CPU.c390207675#390207675#0(0"0(0#0#51"/Users/macbook/Desktop/TCSS422/422/422project/CPU.c8611721312#1399"    cd /Users/macbook/Desktop/TCSS422/422/422project    setenv LANG en_US.US-ASCII    /Developer/usr/bin/gcc-4.2 -x c -arch x86_64 -fmessage-length=0 -pipe -std=gnu99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/SDKs/MacOSX10.6.sdk -mfix-and-continue -mmacosx-version-min=10.6 -gdwarf-2 -iquote /Users/macbook/Desktop/TCSS422/422/422project/build/422project.build/Debug/422project.build/422project-generated-files.hmap -I/Users/macbook/Desktop/TCSS422/422/422project/build/422project.build/Debug/422project.build/422project-own-target-headers.hmap -I/Users/macbook/Desktop/TCSS422/422/422project/build/422project.build/Debug/422project.build/422project-all-target-headers.hmap -iquote /Users/macbook/Desktop/TCSS422/422/422project/build/422project.build/Debug/422project.build/422project-project-headers.hmap -F/Users/macbook/Desktop/TCSS422/422/422project/build/Debug -I/Users/macbook/Desktop/TCSS422/422/422project/build/Debug/include -I/Users/macbook/Desktop/TCSS422/422/422project/build/422project.build/Debug/422project.build/DerivedSources/x86_64 -I/Users/macbook/Desktop/TCSS422/422/422project/build/422project.build/Debug/422project.build/DerivedSources -c /Users/macbook/Desktop/TCSS422/422/422project/CPU.c -o /Users/macbook/Desktop/TCSS422/422/422project/build/422project.build/Debug/422project.build/Objects-normal/x86_64/CPU.o0#
+
+CCompileC build/422project.build/Debug/422project.build/Objects-normal/x86_64/Process.o /Users/macbook/Desktop/TCSS422/422/422project/Process.c normal x86_64 c com.apple.compilers.gcc.4_2
+s390207675.048141
+e390207675.363413
+r1
+xCompileC
+xbuild/422project.build/Debug/422project.build/Objects-normal/x86_64/Process.o
+x/Users/macbook/Desktop/TCSS422/422/422project/Process.c
+xnormal
+xx86_64
+xc
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@63"Compile /Users/macbook/Desktop/TCSS422/422/422project/Process.c390207675#390207675#0(0"0(0#0#55"/Users/macbook/Desktop/TCSS422/422/422project/Process.c8660259774160596992#1407"    cd /Users/macbook/Desktop/TCSS422/422/422project    setenv LANG en_US.US-ASCII    /Developer/usr/bin/gcc-4.2 -x c -arch x86_64 -fmessage-length=0 -pipe -std=gnu99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/SDKs/MacOSX10.6.sdk -mfix-and-continue -mmacosx-version-min=10.6 -gdwarf-2 -iquote /Users/macbook/Desktop/TCSS422/422/422project/build/422project.build/Debug/422project.build/422project-generated-files.hmap -I/Users/macbook/Desktop/TCSS422/422/422project/build/422project.build/Debug/422project.build/422project-own-target-headers.hmap -I/Users/macbook/Desktop/TCSS422/422/422project/build/422project.build/Debug/422project.build/422project-all-target-headers.hmap -iquote /Users/macbook/Desktop/TCSS422/422/422project/build/422project.build/Debug/422project.build/422project-project-headers.hmap -F/Users/macbook/Desktop/TCSS422/422/422project/build/Debug -I/Users/macbook/Desktop/TCSS422/422/422project/build/Debug/include -I/Users/macbook/Desktop/TCSS422/422/422project/build/422project.build/Debug/422project.build/DerivedSources/x86_64 -I/Users/macbook/Desktop/TCSS422/422/422project/build/422project.build/Debug/422project.build/DerivedSources -c /Users/macbook/Desktop/TCSS422/422/422project/Process.c -o /Users/macbook/Desktop/TCSS422/422/422project/build/422project.build/Debug/422project.build/Objects-normal/x86_64/Process.o0#
+
+CCompileC build/422project.build/Debug/422project.build/Objects-normal/x86_64/main.o /Users/macbook/Desktop/TCSS422/422/422project/main.c normal x86_64 c com.apple.compilers.gcc.4_2
+r0
+
+CLd /Users/macbook/Desktop/TCSS422/422/422project/build/Debug/422project normal x86_64
+s390207675.363473
+e390207675.727449
+r1
+xLd
+x/Users/macbook/Desktop/TCSS422/422/422project/build/Debug/422project
+xnormal
+xx86_64
+lSLF07#2@73"Link /Users/macbook/Desktop/TCSS422/422/422project/build/Debug/422project390207675#390207675#0(0"0(0#0#0"8611384672#545"    cd /Users/macbook/Desktop/TCSS422/422/422project    setenv MACOSX_DEPLOYMENT_TARGET 10.6    /Developer/usr/bin/gcc-4.2 -arch x86_64 -isysroot /Developer/SDKs/MacOSX10.6.sdk -L/Users/macbook/Desktop/TCSS422/422/422project/build/Debug -F/Users/macbook/Desktop/TCSS422/422/422project/build/Debug -filelist /Users/macbook/Desktop/TCSS422/422/422project/build/422project.build/Debug/422project.build/Objects-normal/x86_64/422project.LinkFileList -mmacosx-version-min=10.6 -o /Users/macbook/Desktop/TCSS422/422/422project/build/Debug/422project0#
+
