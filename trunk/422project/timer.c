@@ -12,13 +12,7 @@
 
 int continue_ticks = 1;
 
-//This function was just a test to see if functions could be called from within a threaded
-//function. It will be replaced when we decide how the timer will interact with the
-//controller.
-void printSomething()
-{
-	printf("Time ended!\n");
-}
+
 
 //This function goes to sleep for the specified quanta, wakes up, calls a function,
 //and goes back to sleep continuously until the program stops it from sleeping.
@@ -29,7 +23,7 @@ void *tickingTimer(int quanta)
 	while(continue_ticks)
 	{
 		sleep(quanta);
-		printSomething();
+		timeEndInterrupt();
 		//notify CPU/Controller, maybe something like
 		//interruptNotify() that would simply point out that it is
 		//time for an interrupt.
@@ -50,7 +44,8 @@ void startTimer(int quanta)
 	pthread_exit(NULL);
 }
 
-void main(void)
-{
-	startTimer(4);
-}
+//int main(void)
+//{
+//	startTimer(4);
+//  return 0;
+//}
