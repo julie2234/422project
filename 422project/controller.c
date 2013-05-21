@@ -14,6 +14,14 @@ ControllerPtr controllerConstruct() {
 	return temp_controller;
 }
 
+//This function was just a test to see if functions could be called from within a threaded
+//function. It will be replaced when we decide how the timer will interact with the
+//controller.
+void timeEndInterrupt()
+{
+	printf("Time ended!\n");
+}
+
 int main () {
 	ControllerPtr controller = controllerConstruct();
 	
@@ -27,6 +35,8 @@ int main () {
 		int type = controller->processList[i]->processType;
 		printf("P%d is of type %d\n", i, type);
 	}
+
+	startTimer(1);
 	scheduler(controller);
 }
 
