@@ -22,6 +22,12 @@ void timeEndInterrupt()
 	printf("Time ended!\n");
 }
 
+void keyPressInterrupt(char pressedKey)
+{
+	printf("You pressed %c\n", pressedKey);
+	printf("Which is %d in ascii\n", pressedKey);
+}
+
 int main () {
 	ControllerPtr controller = controllerConstruct();
 	
@@ -36,7 +42,8 @@ int main () {
 		printf("P%d is of type %d\n", i, type);
 	}
 
-	startTimer(1);
+	//startTimer(1);
+	startKeyboardListener();
 	scheduler(controller);
 }
 
