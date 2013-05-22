@@ -18,7 +18,6 @@ int continue_ticks = 1;
 //and goes back to sleep continuously until the program stops it from sleeping.
 void *tickingTimer(int quanta)
 {
-	printf("in the thread\n");
 	int loops = 0;
 	while(continue_ticks)
 	{
@@ -33,6 +32,7 @@ void *tickingTimer(int quanta)
 			continue_ticks = 0;
 		}
 	}
+	return 0;
 }
 
 //This function starts the the timer ticking down for interrupts and whatnot.
