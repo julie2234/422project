@@ -8,11 +8,17 @@
 #ifndef CPU_H
 #define CPU_H
 
-typedef struct cpu_str {
-	//fill in
+typedef struct cpu_str
+{
+	PcbPtr current_pcb;
+	ControllerPtr controller;
+	//list of possible interrupts to know what to do when an interrupt occurs.
+
 } CpuStr;
 
 typedef CpuStr* CpuPtr;
+
+CpuPtr cpuConstruct(ControllerPtr controller);
 
 #endif
 
