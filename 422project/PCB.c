@@ -8,6 +8,7 @@
 #include "PCB.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 
 PcbPtr pcbConstruct(int the_PID, int the_processType) {
 	PcbPtr temp_pcb = (PcbPtr) malloc(sizeof(PcbStr));
@@ -18,8 +19,12 @@ PcbPtr pcbConstruct(int the_PID, int the_processType) {
 	//temp_pcb->count =	// initialize count to a random number
 	temp_pcb->currentCount = 0;
 	int i;
-	for (i = 0; i < sizeof(temp_pcb->serviceCallValues); i++) {
-		// initialize serviceCallValues[] array to random numbers between 0 and count
+	srand(time(NULL)); //Seeds the random number generator
+	int max_pc = MAX_PC;
+	int amountOfServiceCalls = sizeof(temp_pcb->serviceCallValues);
+	for (i = 0; i < amountOfServiceCalls; i++)
+	{
+		temp_pcb->serviceCallValues[i] = rand() % max_pc;
 	}
 	return temp_pcb;
 }
@@ -34,10 +39,11 @@ PcbPtr pcbConstruct(int the_PID, int the_processType) {
 * not get interupted but the CPU its self is interupted     *
 ************************************************************/
 
-int pcbIterator() {
+int pcbIterator(PcbPtr temp_pcb) {
     int boolean = temp_pcb->count - temp_pcb->currentCount;
     if (boolean > 0) {
-       temp_pcb->clock_counter++;  
+       //ERROR clock_counter does not exist
+    	//temp_pcb->clock_counter++;
        // Input code hear if you wish to process something.
        // Currently just iterates through the data and does nothing.                        
     }

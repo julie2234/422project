@@ -25,7 +25,7 @@ CpuPtr cpuConstruct(ControllerPtr passedInController)
 //Read this to know what nanosleep does.
 void cpuRun(CpuPtr cpu)
 {
-	int PC = 0;
+	int PC = cpu->current_pcb->currentCount;
 	int max = MAX_PC
 	struct timespec timePerTick, timeRemaining;
 	timePerTick.tv_sec = 0;
@@ -35,8 +35,24 @@ void cpuRun(CpuPtr cpu)
 	{
 		nanosleep(&timePerTick, &timeRemaining);
 		PC++;
-		//Insert check for traps here
-//		printf("%d\n", PC);
+		if(PC > max)
+		{
+			PC = 0;
+		}
+
+		//This could be unnecessary, but I don't think
+		//we want to have to worry about what the PC value is
+		//for a process somewhere else when this process get's interrupted.
+		cpu->current_pcb->currentCount = PC;
+
+		int index = 0;
+		for(; index < 8; index++)
+		{
+			if(cpu->current_pcb->serviceCallValues[index] == PC)
+			{
+				//call deviceIO service routine
+			}
+		}
 	}
 
 	return;

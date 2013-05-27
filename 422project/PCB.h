@@ -14,6 +14,7 @@
 #define READY		1
 #define INTERRUPTED	2
 #define BLOCKED		3
+#define MAX_PC 		10000;
 
 typedef struct pcb_str {
 	int PID;
@@ -22,7 +23,8 @@ typedef struct pcb_str {
 	int state;
 	int count;
 	int currentCount;
-	int serviceCallValues[4];
+	int serviceCallValues[8];
+
 	int waiting_on;		// which queue is it in if it is waiting on something (blocked)
 	int owns;			// which mutex lock does it own
 						// anything else you need
