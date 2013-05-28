@@ -42,8 +42,7 @@ PcbPtr pcbConstruct(int the_PID, int the_processType) {
 int pcbIterator(PcbPtr temp_pcb) {
     int boolean = temp_pcb->count - temp_pcb->currentCount;
     if (boolean > 0) {
-       //ERROR clock_counter does not exist
-    	//temp_pcb->clock_counter++;
+    	 temp_pcb->currentCount++;
        // Input code hear if you wish to process something.
        // Currently just iterates through the data and does nothing.                        
     }
