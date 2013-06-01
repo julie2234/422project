@@ -12,7 +12,7 @@
 #include <time.h>
 
 #define TICK_TIME 100000000L;
-#define MAX_PC 10000;
+#define MAX_PC 1000;
 
 CpuPtr cpuConstruct(ControllerPtr passedInController)
 {
@@ -36,7 +36,7 @@ void cpuRun(CpuPtr cpu)
 	{
 		nanosleep(&timePerTick, &timeRemaining);
 		PC++;
-		if(PC > max)
+		if(PC == max - 1)
 		{
 			PC = 0;
 		}
@@ -47,6 +47,8 @@ void cpuRun(CpuPtr cpu)
 		cpu->current_pcb->currentCount = PC;
 
 		int index = 0;
+
+
 		for(; index < 8; index++)
 		{
 			if(cpu->current_pcb->serviceCallValues[index] == PC)
@@ -56,6 +58,12 @@ void cpuRun(CpuPtr cpu)
 			}
 		}
 	}
+	return;
+}
+
+void timerInterrupt()
+{
+
 	return;
 }
 

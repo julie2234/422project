@@ -8,10 +8,11 @@
 #include <stdio.h>
 #include <pthread.h>
 #include "keyboard_io.h"
+#include "controller.h"
 
 int continueListening = 1;
 
-void *keyboardListener(void)
+void *keyboardListener(void* parameter)
 {
 	char input_character;
 	while(continueListening)
@@ -19,9 +20,9 @@ void *keyboardListener(void)
 		input_character = getchar();
         if(input_character == '.')
         {
-            pthread_exit(NULL);
+            return 0;
         }
-        if(input_character != 10)
+        if(input_character != 10) //ascii for '.'
         {
         	keyPressInterrupt(input_character);
         }
@@ -34,7 +35,6 @@ void startKeyboardListener(void)
 {
 	pthread_t keyboard_thread;
 	pthread_create(&keyboard_thread, NULL, keyboardListener, NULL);
-    pthread_exit(NULL);
 }
 
 //void main(void)

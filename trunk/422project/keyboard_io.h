@@ -8,7 +8,7 @@
 #ifndef KEYBOARD_IO_H_
 #define KEYBOARD_IO_H_
 
-void *keyboardListener(void);
+void *keyboardListener(void* parameter);
 void startKeyboardListener(void);
 
 #endif /* KEYBOARD_IO_H_ */

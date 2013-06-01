@@ -5,9 +5,12 @@
  *	TCSS 422, Spring 2013
  */
 
-#include "controller.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include <pthread.h>
+
+#include "controller.h"
+#include "CPU.h"
 
 ControllerPtr controllerConstruct() {
 	ControllerPtr temp_controller = (ControllerPtr) malloc (sizeof(ControllerStr));
@@ -33,7 +36,7 @@ int main ()
 	ControllerPtr controller = controllerConstruct();
 	
 	//just for testing
-	controller->processList[0] = pcbConstruct(0, 1);
+	controller->processList[0] = pcbConstruct(0, 2);
 	controller->processList[1] = pcbConstruct(1, 3);
 	
 	printf("Process Summary\n");
@@ -44,9 +47,13 @@ int main ()
 		printf("P%d is of type %d\n", i, type);
 	}
 
-	startTimer(5);
-	startKeyboardListener();
-	scheduler(controller);
+	CpuPtr cpu = cpuConstruct(controller);
+	cpuRun(cpu);
+
+//	startTimer(5);
+//	startKeyboardListener();
+//	scheduler(controller);
+	pthread_exit(NULL);
 }
 
 
