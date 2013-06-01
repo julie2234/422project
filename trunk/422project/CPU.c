@@ -13,6 +13,14 @@
 #define TICK_TIME 100000000L;
 #define MAX_PC 10000;
 
+//The Processs type list
+#define CPU_BOUND 0;
+#define KEYBOARD_IO 1;
+#define HDD_IO 2;
+#define VIDEO_IO 3;
+#define PRODUCER 4;
+#define CONSUMER 5;
+
 CpuPtr cpuConstruct(ControllerPtr passedInController)
 {
 	CpuPtr temp_cpu = (CpuPtr) malloc (sizeof(CpuStr));
@@ -51,10 +59,54 @@ void cpuRun(CpuPtr cpu)
 			if(cpu->current_pcb->serviceCallValues[index] == PC)
 			{
 				//call deviceIO service routine
+				determineInterrupt(cpu->current_pcb);
 			}
 		}
 	}
-
 	return;
+}
+
+void determineInterrupt(PcbPtr current_pcb)
+{
+	int process_type = current_pcb->processType;
+	switch(process_type)
+	{
+		case 0:
+		{
+			//This is a compute bound process, I don't think we need to do anything here
+			break;
+		}
+		case 1:
+		{
+			//This is keyboard_io, which it blocks, waiting for the user to hit a key.
+			break;
+		}
+		case 2:
+		{
+			//This is HDD_io, so this can go to the device_io class/source file
+			//(whatever you want to call it).
+			break;
+		}
+		case 3:
+		{
+			//Video_io, same idea as HDD_io, but goes to it's own source/thread.
+			break;
+		}
+		case 4:
+		{
+			//producer, not sure yet what is going to happen here
+			break;
+		}
+		case 5:
+		{
+			//consumer, same as above
+			break;
+		}
+
+		default:
+		{
+			//do nothing
+		}
+	}
 }
 
