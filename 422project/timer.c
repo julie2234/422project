@@ -42,8 +42,6 @@ void startTimer(int quanta)
 {
 	pthread_t thread;
 	pthread_create(&thread, NULL, tickingTimer, (void *) quanta);
-
-	pthread_exit(NULL);
 }
 
 //int main(void)

@@ -14,7 +14,7 @@
 #define READY		1
 #define INTERRUPTED	2
 #define BLOCKED		3
-#define MAX_PC 		10000;
+#define MAX_PC 		1000;
 
 typedef struct pcb_str {
 	int PID;
