@@ -7,6 +7,7 @@
 
 #include <stdio.h>
 #include <pthread.h>
+#include "keyboard_io.h"
 
 int continueListening = 1;
 

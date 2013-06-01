@@ -10,6 +10,8 @@
 #include <pthread.h>
 #include <stdio.h>
 
+#include "timer.h"
+
 int continue_ticks = 1;
 
 

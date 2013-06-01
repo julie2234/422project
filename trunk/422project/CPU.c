@@ -6,20 +6,13 @@
  */
 
 #include "CPU.h"
+#include "controller.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
 
 #define TICK_TIME 100000000L;
 #define MAX_PC 10000;
-
-//The Processs type list
-#define CPU_BOUND 0;
-#define KEYBOARD_IO 1;
-#define HDD_IO 2;
-#define VIDEO_IO 3;
-#define PRODUCER 4;
-#define CONSUMER 5;
 
 CpuPtr cpuConstruct(ControllerPtr passedInController)
 {

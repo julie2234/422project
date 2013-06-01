@@ -15,23 +15,5 @@ ProcessPtr processContruct(int the_processType, int the_PID) {
 	return temp_process;
 }
 
-void run(ProcessPtr this) {
-	switch(this->processType) {
-		case(KEYBOARD):
-			printf("ran keyboard process");
-			break;
-		case(COMPUTE):
-			printf("ran compute process");
-			break;
-		case(IO):
-			printf("ran io process");
-			break;
-		case(PRODUCER):
-			printf("ran producer process");
-			break;
-		case(CONSUMER):
-			printf("ran consumer process");
-			break;
-	}
-}
+
 
