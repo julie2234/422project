@@ -28,7 +28,8 @@ void keyPressInterrupt(char pressedKey)
 	printf("Which is %d in ascii\n", pressedKey);
 }
 
-int main () {
+int main ()
+{
 	ControllerPtr controller = controllerConstruct();
 	
 	//just for testing
@@ -37,12 +38,13 @@ int main () {
 	
 	printf("Process Summary\n");
 	int i;
-	for (i = 0; i < 2; i++) {
+	for (i = 0; i < 2; i++)
+	{
 		int type = controller->processList[i]->processType;
 		printf("P%d is of type %d\n", i, type);
 	}
 
-	//startTimer(1);
+	startTimer(5);
 	startKeyboardListener();
 	scheduler(controller);
 }

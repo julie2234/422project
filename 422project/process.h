@@ -8,12 +8,13 @@
 #ifndef PROCESS_H
 #define PROCESS_H
 
-// Process Types
-#define KEYBOARD	0
-#define COMPUTE		1
-#define IO			2
-#define PRODUCER	3
-#define CONSUMER	4
+//The Processs type list
+#define CPU_BOUND 0;
+#define KEYBOARD_IO 1;
+#define HDD_IO 2;
+#define VIDEO_IO 3;
+#define PRODUCER 4;
+#define CONSUMER 5;
 
 typedef struct process_str {
 	int processType;

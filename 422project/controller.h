@@ -19,5 +19,9 @@ typedef struct controller_str {
 
 typedef ControllerStr* ControllerPtr;
 
+ControllerPtr controllerConstruct();
+void timeEndInterrupt();
+void keyPressInterrupt(char pressedKey);
+
 #endif
 
