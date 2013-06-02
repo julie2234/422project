@@ -6,16 +6,10 @@
  */
 
 #include "CPU.h"
-#include "controller.h"
-#include <stdio.h>
-#include <stdlib.h>
-#include <time.h>
-
-#define TICK_TIME 100000000L;
-#define MAX_PC 1000;
 
 int interruptFlag = 0;
-int interruptType = 0;
+int interruptList[5]; //For interrupts that happen during other interrupts
+int interruptIndex = 0; //The index for the interrupt list
 
 CpuPtr cpuConstruct(ControllerPtr passedInController)
 {
@@ -37,9 +31,17 @@ void cpuRun(CpuPtr cpu)
 
 	while(PC < max)
 	{
-		if (interruptFlag == 1) {
-			interruptFlag = 0;
-			if (interruptType == 8) {
+		while(interruptFlag == 1)
+		{
+			if(interruptIndex == 0) //Check to see if there are more interrupts waiting
+			{
+				interruptFlag = 0;
+			}
+
+			determineInterrupt(interruptList[interruptIndex]);
+
+			if (interruptList[interruptIndex] == 8)
+			{
 				scheduler(cpu->controller);
 			}
 		}
@@ -74,7 +76,9 @@ void cpuRun(CpuPtr cpu)
 void setInterrupt(int interruptID)
 {
 	interruptFlag = 1;
-	interruptType = interruptID;
+	interruptIndex++;
+	interruptList[interruptIndex] = interruptID;
+
 	return;
 }
 
@@ -115,6 +119,35 @@ void determineSystemCall(PcbPtr current_pcb)
 		case 5:
 		{
 			//consumer, same as above
+			break;
+		}
+
+		default:
+		{
+			//do nothing
+		}
+	}
+}
+
+void determineInterrupt(int interruptType)
+{
+	switch(interruptType)
+	{
+		case 0: // timer interrupt
+		{
+			//do the timer interrupt functions
+			break;
+		}
+
+		case 1: //hdd interrupt
+		{
+			//do the hdd interrupt functions
+			break;
+		}
+
+		case 2: //video interrupt
+		{
+			//do the video interrupt functions
 			break;
 		}
 
