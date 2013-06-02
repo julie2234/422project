@@ -25,18 +25,12 @@ void timeEndInterrupt()
 	printf("Time ended!\n");
 }
 
-void keyPressInterrupt(char pressedKey)
-{
-	printf("You pressed %c\n", pressedKey);
-	printf("Which is %d in ascii\n", pressedKey);
-}
-
 int main ()
 {
 	ControllerPtr controller = controllerConstruct();
 	
 	//just for testing
-	controller->processList[0] = pcbConstruct(0, 2);
+	controller->processList[0] = pcbConstruct(0, 1);
 	controller->processList[1] = pcbConstruct(1, 3);
 	
 	printf("Process Summary\n");
@@ -47,12 +41,12 @@ int main ()
 		printf("P%d is of type %d\n", i, type);
 	}
 
+	startTimer(5);
+	scheduler(controller);
+
 	CpuPtr cpu = cpuConstruct(controller);
 	cpuRun(cpu);
 
-//	startTimer(5);
-//	startKeyboardListener();
-//	scheduler(controller);
 	pthread_exit(NULL);
 }
 

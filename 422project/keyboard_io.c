@@ -11,6 +11,7 @@
 #include "controller.h"
 
 int continueListening = 1;
+int process_waiting;
 
 void *keyboardListener(void* parameter)
 {
@@ -18,23 +19,26 @@ void *keyboardListener(void* parameter)
 	while(continueListening)
 	{
 		input_character = getchar();
-        if(input_character == '.')
-        {
-            return 0;
-        }
-        if(input_character != 10) //ascii for '.'
-        {
-        	keyPressInterrupt(input_character);
-        }
+		continueListening = 1;
+		keyPressInterrupt(input_character);
 	}
 
 	return 0;
 }
 
-void startKeyboardListener(void)
+void startKeyboardListener(int process_id)
 {
+	printf("Starting Keyboard Listener");
 	pthread_t keyboard_thread;
+	process_waiting = process_id;
 	pthread_create(&keyboard_thread, NULL, keyboardListener, NULL);
+}
+
+void keyPressInterrupt(char pressedKey)
+{
+	printf("You pressed %c\n", pressedKey);
+	printf("Which is %d in ascii\n", pressedKey);
+	printf("Process %d", process_waiting);
 }
 
 //void main(void)
