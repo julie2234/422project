@@ -7,8 +7,20 @@
 
 #ifndef CPU_H
 
-#include "PCB.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
 #include "controller.h"
+#include "PCB.h"
+#include "keyboard_io.h"
+
+
+#define TICK_TIME 100000000L;
+#define MAX_PC 1000;
+
+#define TIMER_INTERRUPT = 0;
+#define HDD_INTERRUPT = 1;
+#define VIDEO_INTERRUPT = 2;
 #define CPU_H
 
 typedef struct cpu_str
@@ -24,6 +36,7 @@ typedef CpuStr* CpuPtr;
 CpuPtr cpuConstruct(ControllerPtr controller);
 void cpuRun(CpuPtr cpu);
 void determineSystemCall(PcbPtr current_pcb);
+void determineInterrupt(int interruptType);
 void setInterrupt(int interruptID);
 
 #endif
