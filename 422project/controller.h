@@ -9,6 +9,7 @@
 #define CONTROLLER_H
 #include "PCB.h"
 #include "process.h"
+#include "timer.h"
 
 typedef struct controller_str {
 	PcbPtr processList[2];
@@ -21,6 +22,7 @@ typedef ControllerStr* ControllerPtr;
 
 ControllerPtr controllerConstruct();
 void timeEndInterrupt();
+void scheduler(ControllerPtr this);
 
 #endif
 

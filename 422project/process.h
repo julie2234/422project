@@ -21,6 +21,6 @@ typedef struct process_str {
 } ProcessStr;
 
 typedef ProcessStr* ProcessPtr;
-
+ProcessPtr processContruct(int the_processType, int the_PID);
 
 #endif

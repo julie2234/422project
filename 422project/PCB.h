@@ -32,4 +32,7 @@ typedef struct pcb_str {
 
 typedef PcbStr* PcbPtr;
 
+PcbPtr pcbConstruct(int the_PID, int the_processType);
+int pcbIterator(PcbPtr temp_pcb);
+
 #endif
