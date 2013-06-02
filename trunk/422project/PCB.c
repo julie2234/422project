@@ -14,7 +14,7 @@ PcbPtr pcbConstruct(int the_PID, int the_processType) {
 	PcbPtr temp_pcb = (PcbPtr) malloc(sizeof(PcbStr));
 	temp_pcb->PID = the_PID;
 	temp_pcb->processType = the_processType;
-	temp_pcb->process = processContruct(the_processType);
+	temp_pcb->process = processContruct(the_PID, the_processType);
 	temp_pcb->state = READY;
 	//temp_pcb->count =	// initialize count to a random number
 	temp_pcb->currentCount = 0;
