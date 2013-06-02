@@ -9,6 +9,7 @@
 #define KEYBOARD_IO_H_
 
 void *keyboardListener(void* parameter);
-void startKeyboardListener(void);
+void startKeyboardListener(int process_id);
+void keyPressInterrupt(char pressedKey);
 
 #endif /* KEYBOARD_IO_H_ */

@@ -80,17 +80,20 @@ void determineInterrupt(PcbPtr current_pcb)
 		case 1:
 		{
 			//This is keyboard_io, which it blocks, waiting for the user to hit a key.
+			startKeyboardListener(current_pcb->PID);
 			break;
 		}
 		case 2:
 		{
 			//This is HDD_io, so this can go to the device_io class/source file
 			//(whatever you want to call it).
+			printf("HDD IO");
 			break;
 		}
 		case 3:
 		{
 			//Video_io, same idea as HDD_io, but goes to it's own source/thread.
+			printf("Video IO");
 			break;
 		}
 		case 4:
