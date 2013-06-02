@@ -10,12 +10,13 @@
 #include "PCB.h"
 #include "process.h"
 #include "timer.h"
+#include "queue.h"
 
 typedef struct controller_str {
-	PcbPtr processList[2];
-	//PcbPtr readyQueue //this will be a queue
-	ProcessPtr runningProcess;
-	ProcessPtr interruptedProcess;
+	PcbPtr processList[4];
+	QueuePtr readyQueue;
+	PcbPtr runningProcess;
+	PcbPtr interruptedProcess;
 } ControllerStr;
 
 typedef ControllerStr* ControllerPtr;

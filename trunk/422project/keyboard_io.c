@@ -39,7 +39,7 @@ void keyPressInterrupt(char pressedKey)
 	printf("You pressed %c\n", pressedKey);
 	printf("Which is %d in ascii\n", pressedKey);
 	printf("Process %d", process_waiting);
-	setInterupt(4);
+	setInterrupt(4);
 }
 
 //void main(void)
