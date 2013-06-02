@@ -90,8 +90,8 @@ void Queue_clear(QueuePtr queue) {
 	queue->head = 0;
 }
 
-/*
-int main() {
+
+/*int main() {
 
 	PcbStr pcb1;
 	PcbPtr pcb2;
@@ -129,5 +129,5 @@ int main() {
 	Queue_destruct(ptr);
 
 	return 0;
-}
-*/
+}*/
+

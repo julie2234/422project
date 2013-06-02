@@ -14,6 +14,7 @@
 
 ControllerPtr controllerConstruct() {
 	ControllerPtr temp_controller = (ControllerPtr) malloc (sizeof(ControllerStr));
+	temp_controller->readyQueue = Queue_construct(5);
 	return temp_controller;
 }
 
@@ -32,17 +33,27 @@ int main ()
 	//just for testing
 	controller->processList[0] = pcbConstruct(0, 1);
 	controller->processList[1] = pcbConstruct(1, 3);
+	controller->processList[2] = pcbConstruct(2, 2);
+	controller->processList[3] = pcbConstruct(3, 4);
 	
 	printf("Process Summary\n");
 	int i;
-	for (i = 0; i < 2; i++)
+	for (i = 0; i < 4; i++)
 	{
 		int type = controller->processList[i]->processType;
-		printf("P%d is of type %d\n", i, type);
+		printf("P%d is type %d and has service call values", i, type);
+		int j;
+		for (j = 0; j < 8; j++) {
+			printf(" %d", controller->processList[i]->serviceCallValues[j]);
+		}
+		printf("\n");
+		Queue_add(controller->readyQueue, controller->processList[i]);
 	}
+	controller->runningProcess = Queue_remove(controller->readyQueue);
+	printf("\nP%d is running \n", controller->runningProcess->PID);
 
 	startTimer(5);
-	scheduler(controller);
+	//scheduler(controller);
 
 	CpuPtr cpu = cpuConstruct(controller);
 	cpuRun(cpu);
@@ -52,10 +63,11 @@ int main ()
 
 
 void scheduler(ControllerPtr this) {
-	//PcbPtr process = readyQueue.dequeue(); // dequeue a process from the ready queue 
-	//process->state = RUNNING; // change the state in its PCB to RUNNING
-	//run(process); // call the run method in process.c
-	//this->runningProcess = process; 
+	Queue_add(this->readyQueue, this->runningProcess);
+	PcbPtr process = Queue_remove(this->readyQueue); 
+	printf("\nP%d is running \n", process->PID);
+	process->state = RUNNING; // change the state in its PCB to RUNNING
+	this->runningProcess = process; 
 }
 
 

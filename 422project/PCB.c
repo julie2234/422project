@@ -21,8 +21,9 @@ PcbPtr pcbConstruct(int the_PID, int the_processType) {
 	int i;
 	srand(time(NULL)); //Seeds the random number generator
 	int max_pc = MAX_PC;
-	int amountOfServiceCalls = sizeof(temp_pcb->serviceCallValues);
-	for (i = 0; i < amountOfServiceCalls; i++)
+	//int amountOfServiceCalls = sizeof(temp_pcb->serviceCallValues);
+	//I put 8 in the for loop because amountOfServiceCalls gets set to 32 for some reason
+	for (i = 0; i < 8; i++) 
 	{
 		temp_pcb->serviceCallValues[i] = rand() % max_pc;
 	}

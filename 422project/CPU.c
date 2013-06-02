@@ -37,6 +37,12 @@ void cpuRun(CpuPtr cpu)
 
 	while(PC < max)
 	{
+		if (interruptFlag == 1) {
+			interruptFlag = 0;
+			if (interruptType == 8) {
+				scheduler(cpu->controller);
+			}
+		}
 		nanosleep(&timePerTick, &timeRemaining);
 		PC++;
 		if(PC == max - 1)
@@ -58,16 +64,17 @@ void cpuRun(CpuPtr cpu)
 			{
 				//call deviceIO service routine
 				determineSystemCall(cpu->current_pcb);
+				printf(" PC is %d \n", PC);
 			}
 		}
 	}
 	return;
 }
 
-void setInterupt(int interuptID)
+void setInterrupt(int interruptID)
 {
 	interruptFlag = 1;
-	interruptType = interuptID;
+	interruptType = interruptID;
 	return;
 }
 

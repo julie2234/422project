@@ -24,6 +24,7 @@ typedef CpuStr* CpuPtr;
 CpuPtr cpuConstruct(ControllerPtr controller);
 void cpuRun(CpuPtr cpu);
 void determineSystemCall(PcbPtr current_pcb);
+void setInterrupt(int interruptID);
 
 #endif
 
