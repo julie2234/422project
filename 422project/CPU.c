@@ -14,6 +14,9 @@
 #define TICK_TIME 100000000L;
 #define MAX_PC 1000;
 
+int interruptFlag = 0;
+int interruptType = 0;
+
 CpuPtr cpuConstruct(ControllerPtr passedInController)
 {
 	CpuPtr temp_cpu = (CpuPtr) malloc (sizeof(CpuStr));
@@ -54,20 +57,21 @@ void cpuRun(CpuPtr cpu)
 			if(cpu->current_pcb->serviceCallValues[index] == PC)
 			{
 				//call deviceIO service routine
-				determineInterrupt(cpu->current_pcb);
+				determineSystemCall(cpu->current_pcb);
 			}
 		}
 	}
 	return;
 }
 
-void timerInterrupt()
+void setInterupt(int interuptID)
 {
-
+	interruptFlag = 1;
+	interruptType = interuptID;
 	return;
 }
 
-void determineInterrupt(PcbPtr current_pcb)
+void determineSystemCall(PcbPtr current_pcb)
 {
 	int process_type = current_pcb->processType;
 	switch(process_type)
