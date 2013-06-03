@@ -12,6 +12,7 @@
 
 int continueListening = 1;
 int process_waiting;
+char key_pressed;
 
 void *keyboardListener(void* parameter)
 {
@@ -19,10 +20,13 @@ void *keyboardListener(void* parameter)
 	while(continueListening)
 	{
 		input_character = getchar();
-		continueListening = 1;
+		getchar(); // throw away enter key
+		continueListening = 0;
+		key_pressed = input_character;
 		keyPressInterrupt(input_character);
 	}
 
+	continueListening = 1; //turn back on the ability to take in characters.
 	return 0;
 }
 
@@ -36,10 +40,12 @@ void startKeyboardListener(int process_id)
 
 void keyPressInterrupt(char pressedKey)
 {
-	printf("You pressed %c\n", pressedKey);
-	printf("Which is %d in ascii\n", pressedKey);
-	printf("Process %d", process_waiting);
-	setInterrupt(4);
+	setInterrupt(3, process_waiting);
+}
+
+char getKeyPress()
+{
+	return key_pressed;
 }
 
 //void main(void)

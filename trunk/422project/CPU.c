@@ -9,13 +9,16 @@
 
 int interruptFlag = 0;
 int interruptList[5]; //For interrupts that happen during other interrupts
-int interruptIndex = 0; //The index for the interrupt list
+
+//This is a "parallel" array that holds a list of processes that correspond to the interrupt
+int interruptProcessList[5];
+int interruptListSize = 0; //The index for the interrupt list
 
 CpuPtr cpuConstruct(ControllerPtr passedInController)
 {
 	CpuPtr temp_cpu = (CpuPtr) malloc (sizeof(CpuStr));
 	temp_cpu->controller = passedInController;
-	temp_cpu->current_pcb = passedInController->processList[0];
+	temp_cpu->current_pcb = passedInController->runningProcess;
 	return temp_cpu;
 }
 
@@ -31,18 +34,21 @@ void cpuRun(CpuPtr cpu)
 
 	while(PC < max)
 	{
+		int interruptIndex = 0;
 		while(interruptFlag == 1)
 		{
-			if(interruptIndex == 0) //Check to see if there are more interrupts waiting
+			determineInterrupt(interruptList[interruptIndex], interruptProcessList[interruptIndex]);
+
+//			if (interruptList[interruptIndex] == 8)
+//			{
+//				scheduler(cpu->controller);
+//			}
+
+			interruptIndex++;
+			if(interruptListSize == interruptIndex) //Check to see if there are more interrupts waiting
 			{
 				interruptFlag = 0;
-			}
-
-			determineInterrupt(interruptList[interruptIndex]);
-
-			if (interruptList[interruptIndex] == 8)
-			{
-				scheduler(cpu->controller);
+				interruptListSize = 0;
 			}
 		}
 		nanosleep(&timePerTick, &timeRemaining);
@@ -65,7 +71,7 @@ void cpuRun(CpuPtr cpu)
 			if(cpu->current_pcb->serviceCallValues[index] == PC)
 			{
 				//call deviceIO service routine
-				determineSystemCall(cpu->current_pcb);
+				determineSystemCall(cpu);
 				printf(" PC is %d \n", PC);
 			}
 		}
@@ -73,18 +79,19 @@ void cpuRun(CpuPtr cpu)
 	return;
 }
 
-void setInterrupt(int interruptID)
+void setInterrupt(int interruptID, int processID)
 {
 	interruptFlag = 1;
-	interruptIndex++;
-	interruptList[interruptIndex] = interruptID;
+	interruptList[interruptListSize] = interruptID;
+	interruptProcessList[interruptListSize] = processID;
+	interruptListSize++;
 
 	return;
 }
 
-void determineSystemCall(PcbPtr current_pcb)
+void determineSystemCall(CpuPtr cpu)
 {
-	int process_type = current_pcb->processType;
+	int process_type = cpu->current_pcb->processType;
 	switch(process_type)
 	{
 		case 0:
@@ -95,7 +102,9 @@ void determineSystemCall(PcbPtr current_pcb)
 		case 1:
 		{
 			//This is keyboard_io, which it blocks, waiting for the user to hit a key.
-			startKeyboardListener(current_pcb->PID);
+			startKeyboardListener(cpu->current_pcb->PID);
+			//IO_block(cpu->controller);
+
 			break;
 		}
 		case 2:
@@ -129,13 +138,14 @@ void determineSystemCall(PcbPtr current_pcb)
 	}
 }
 
-void determineInterrupt(int interruptType)
+void determineInterrupt(int interruptType, int processID)
 {
+	printf("InterruptType: %d, processID: %d\n", interruptType, processID);
 	switch(interruptType)
 	{
 		case 0: // timer interrupt
 		{
-			//do the timer interrupt functions
+			printf("Timer Interupt\n");
 			break;
 		}
 
@@ -151,10 +161,20 @@ void determineInterrupt(int interruptType)
 			break;
 		}
 
+		case 3: //KB interrupt
+		{
+			char key_press = getKeyPress();
+			printf("You pressed %c\n", key_press);
+			printf("Which is %d in ascii\n", key_press);
+			printf("Process %d", processID);
+			break;
+		}
+
 		default:
 		{
 			//do nothing
 		}
 	}
+	interruptFlag = 0;
 }
 
