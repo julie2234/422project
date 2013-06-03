@@ -18,13 +18,6 @@ ControllerPtr controllerConstruct() {
 	return temp_controller;
 }
 
-//This function was just a test to see if functions could be called from within a threaded
-//function. It will be replaced when we decide how the timer will interact with the
-//controller.
-void timeEndInterrupt()
-{
-	printf("Time ended!\n");
-}
 
 int main ()
 {
@@ -36,6 +29,7 @@ int main ()
 	controller->processList[2] = pcbConstruct(2, 2);
 	controller->processList[3] = pcbConstruct(3, 4);
 	
+
 	printf("Process Summary\n");
 	int i;
 	for (i = 0; i < 4; i++)
@@ -64,10 +58,15 @@ int main ()
 
 void scheduler(ControllerPtr this) {
 	Queue_add(this->readyQueue, this->runningProcess);
-	PcbPtr process = Queue_remove(this->readyQueue); 
+	PcbPtr process = Queue_remove(this->readyQueue);
 	printf("\nP%d is running \n", process->PID);
 	process->state = RUNNING; // change the state in its PCB to RUNNING
-	this->runningProcess = process; 
+	this->runningProcess = process;
+}
+
+void IO_block(ControllerPtr controller)
+{
+	printf("Block this process");
 }
 
 

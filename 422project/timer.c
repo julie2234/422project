@@ -24,8 +24,7 @@ void *tickingTimer(void* quanta)
 	while(continue_ticks)
 	{
 		sleep((int) quanta);
-		setInterrupt(8);
-		//timeEndInterrupt();
+		setInterrupt(0, -1);
 		//notify CPU/Controller, maybe something like
 		//interruptNotify() that would simply point out that it is
 		//time for an interrupt.
