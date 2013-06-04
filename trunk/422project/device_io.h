@@ -11,6 +11,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <pthread.h>
+#include "CPU.h"
 
 #define MAX_INTERRUPT_DELAY     100;
 #define MIN_INTERRUPT_DELAY     100;
