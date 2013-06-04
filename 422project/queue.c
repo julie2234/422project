@@ -3,7 +3,52 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-QueuePtr Queue_construct(int init_cap) {
+
+QueuePtr Queue_construct() {
+	QueuePtr newPtr;
+	newPtr = (QueuePtr) malloc (sizeof(QueueStr));
+	newPtr->head = 0;
+	newPtr->count = 0;
+	newPtr->max = 20;
+	return newPtr;
+}
+
+void Queue_destruct(QueuePtr queue) {
+	if (queue == 0)
+		return;
+	free (queue->pcbs);
+	free (queue);
+}
+
+int Queue_size(QueuePtr queue) {
+	if (queue == 0)
+		return NULL_POINTER;
+	return queue->count;
+}
+
+int Queue_add(QueuePtr queue, PcbPtr pcb) {
+	int pos;
+	if (queue == 0 || pcb == 0)
+		return NULL_POINTER;
+	pos = (queue->head + queue->count) % queue->max;
+	queue->pcbs[pos] = pcb;
+	queue->count++;
+	return queue->count-1;
+}
+
+PcbPtr Queue_remove(QueuePtr queue) {
+	int pos;
+	if (queue == 0 || queue->count == 0)
+		return 0;
+	queue->count--;
+	pos = queue->head;
+	queue->head = (queue->head + 1) % queue->max;
+	return queue->pcbs[pos];
+}
+
+
+
+/*QueuePtr Queue_construct(int init_cap) {
 	QueuePtr newPtr;
 	if (init_cap < 1)
 		init_cap = 1;
@@ -88,7 +133,7 @@ void Queue_clear(QueuePtr queue) {
 		return;
 	queue->count = 0;
 	queue->head = 0;
-}
+}*/
 
 
 /*int main() {

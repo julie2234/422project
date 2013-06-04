@@ -11,6 +11,7 @@
 #include <time.h>
 
 PcbPtr pcbConstruct(int the_PID, int the_processType) {
+	srand(time(NULL));
 	PcbPtr temp_pcb = (PcbPtr) malloc(sizeof(PcbStr));
 	temp_pcb->PID = the_PID;
 	temp_pcb->processType = the_processType;

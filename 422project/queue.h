@@ -4,12 +4,13 @@
 #include "PCB.h"
 
 #define NULL_POINTER -1;
+#define QUEUE_SIZE 20;
 
 typedef struct queue_str {
 	int head;
 	int count;
 	int max;
-	PcbPtr * pcbs;
+	PcbPtr pcbs[20];
 } QueueStr;
 
 typedef struct queue_str* QueuePtr;
@@ -17,7 +18,7 @@ typedef struct queue_str* QueuePtr;
 /*
  * Construct a new Queue with given inital capacity.
  */
-QueuePtr Queue_construct(int init_cap);
+QueuePtr Queue_construct();
 
 /*
  * Destruct a given queue-by freeing the internal array as well as the queue itself. 
@@ -39,20 +40,31 @@ int      Queue_add(QueuePtr queue, PcbPtr pcb);
  */
 PcbPtr   Queue_remove(QueuePtr queue);
 
-/*
- * Retrieve, but do not remove, a PCB from the head of the queue.
- */
+
+/*typedef struct queue_str {
+ int head;
+ int count;
+ int max;
+ PcbPtr * pcbs;
+ } QueueStr;
+ 
+ typedef struct queue_str* QueuePtr;
+ 
+QueuePtr Queue_construct(int init_cap);
+
+void     Queue_destruct(QueuePtr queue);
+
+int      Queue_size(QueuePtr queue);
+
+int      Queue_add(QueuePtr queue, PcbPtr pcb);
+
+PcbPtr   Queue_remove(QueuePtr queue);
+
 PcbPtr   Queue_peek(QueuePtr queue);
 
-/*
- * Clear all elements from a queue. DOES NOT CHANGE CAPACITY.
- */
 void     Queue_clear(QueuePtr queue);
 
-/*
- * (INTERNAL USE ONLY) Resize the circular queue.
- */
-void     Queue_resize(QueuePtr queue, int new_size);
+void     Queue_resize(QueuePtr queue, int new_size);*/
 
 #endif
 
