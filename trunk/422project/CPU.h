@@ -6,7 +6,7 @@
  */
 
 #ifndef CPU_H
-
+#define CPU_H
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
