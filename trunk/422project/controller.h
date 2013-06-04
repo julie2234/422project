@@ -15,6 +15,9 @@
 typedef struct controller_str {
 	PcbPtr processList[4];
 	QueuePtr readyQueue;
+	QueuePtr kbQueue;
+	QueuePtr videoQueue;
+	QueuePtr hddQueue;
 	PcbPtr runningProcess;
 	PcbPtr interruptedProcess;
 } ControllerStr;
@@ -24,6 +27,7 @@ typedef ControllerStr* ControllerPtr;
 ControllerPtr controllerConstruct();
 void timeEndInterrupt();
 void scheduler(ControllerPtr this);
+void IO_block(ControllerPtr controller, int IODeviceID);
 
 #endif
 
