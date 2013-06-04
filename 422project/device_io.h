@@ -5,6 +5,9 @@
  *      TCSS 422, Spring 2013
  */
 
+#ifndef DEVICE_IO_H
+#define DEVICE_IO_H
+
 #include <stdlib.h>
 #include <stdio.h>
 #include <pthread.h>

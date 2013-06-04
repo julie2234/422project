@@ -5,9 +5,7 @@
  *      TCSS 422, Spring 2013
  */
 
-#include <stdlib.h>
-#include <stdio.h>
-#include <pthread.h>
+
 #include "device_io.h"
 
 DeviceIO initialize() {
@@ -33,7 +31,7 @@ DeviceIO devioReActivate(DeviceIO temp_dev_io) {
 //Interrupts the CPU
 void interruptCpu() {
      //CHECK TO SEE IF CPU IS ALREADY INTERRUPTED
-     setInterrupt(1, process_waiting);
+     //setInterrupt(1, process_waiting);
 }
 
 //a looping thread that runs until device io activity is set to 0
