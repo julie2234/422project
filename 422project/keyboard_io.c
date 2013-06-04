@@ -40,7 +40,7 @@ void startKeyboardListener(int process_id)
 
 void keyPressInterrupt(char pressedKey)
 {
-	setInterrupt(3, process_waiting);
+	setInterrupt(1, process_waiting);
 }
 
 char getKeyPress()

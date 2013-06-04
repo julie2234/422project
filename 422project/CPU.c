@@ -34,6 +34,16 @@ void cpuRun(CpuPtr cpu)
 
 	while(PC < max)
 	{
+		PC++;
+		if(PC == max - 1)
+		{
+			PC = 0;
+		}
+		//This could be unnecessary, but I don't think
+		//we want to have to worry about what the PC value is
+		//for a process somewhere else when this process get's interrupted.
+		cpu->current_pcb->currentCount = PC;
+
 		int interruptIndex = 0;
 		while(interruptFlag == 1)
 		{
@@ -52,16 +62,6 @@ void cpuRun(CpuPtr cpu)
 			}
 		}
 		nanosleep(&timePerTick, &timeRemaining);
-		PC++;
-		if(PC == max - 1)
-		{
-			PC = 0;
-		}
-
-		//This could be unnecessary, but I don't think
-		//we want to have to worry about what the PC value is
-		//for a process somewhere else when this process get's interrupted.
-		cpu->current_pcb->currentCount = PC;
 
 		int index = 0;
 
@@ -103,7 +103,7 @@ void determineSystemCall(CpuPtr cpu)
 		{
 			//This is keyboard_io, which it blocks, waiting for the user to hit a key.
 			startKeyboardListener(cpu->current_pcb->PID);
-			//IO_block(cpu->controller);
+			IO_block(cpu->controller, 1);
 
 			break;
 		}
@@ -140,7 +140,6 @@ void determineSystemCall(CpuPtr cpu)
 
 void determineInterrupt(int interruptType, int processID)
 {
-	printf("InterruptType: %d, processID: %d\n", interruptType, processID);
 	switch(interruptType)
 	{
 		case 0: // timer interrupt
@@ -149,19 +148,7 @@ void determineInterrupt(int interruptType, int processID)
 			break;
 		}
 
-		case 1: //hdd interrupt
-		{
-			//do the hdd interrupt functions
-			break;
-		}
-
-		case 2: //video interrupt
-		{
-			//do the video interrupt functions
-			break;
-		}
-
-		case 3: //KB interrupt
+		case 1: //KB interrupt
 		{
 			char key_press = getKeyPress();
 			printf("You pressed %c\n", key_press);
@@ -169,6 +156,19 @@ void determineInterrupt(int interruptType, int processID)
 			printf("Process %d", processID);
 			break;
 		}
+
+		case 2: //hdd interrupt
+		{
+			//do the hdd interrupt functions
+			break;
+		}
+
+		case 3: //video interrupt
+		{
+			//do the video interrupt functions
+			break;
+		}
+
 
 		default:
 		{

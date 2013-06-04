@@ -15,6 +15,9 @@
 ControllerPtr controllerConstruct() {
 	ControllerPtr temp_controller = (ControllerPtr) malloc (sizeof(ControllerStr));
 	temp_controller->readyQueue = Queue_construct(5);
+	temp_controller->kbQueue = Queue_construct(3);
+	temp_controller->hddQueue = Queue_construct(3);
+	temp_controller->videoQueue = Queue_construct(3);
 	return temp_controller;
 }
 
@@ -35,7 +38,7 @@ int main ()
 	for (i = 0; i < 4; i++)
 	{
 		int type = controller->processList[i]->processType;
-		printf("P%d is type %d and has service call values", i, type);
+		printf("P%d is type %d and has service call values", controller->processList[i]->PID, type);
 		int j;
 		for (j = 0; j < 8; j++) {
 			printf(" %d", controller->processList[i]->serviceCallValues[j]);
@@ -64,9 +67,30 @@ void scheduler(ControllerPtr this) {
 	this->runningProcess = process;
 }
 
-void IO_block(ControllerPtr controller)
+void IO_block(ControllerPtr controller, int IODeviceID)
 {
-	printf("Block this process");
+	if(IODeviceID == 1) // Send process to Keyboard blocking queue
+	{
+		Queue_add(controller->kbQueue, controller->runningProcess);
+		printf("Process %d was sent to the keyboard blocking queue\n",
+				controller->runningProcess->PID);
+	}
+
+	else if(IODeviceID == 2) //Send process to hdd blocking queue
+	{
+		Queue_add(controller->hddQueue, controller->runningProcess);
+		printf("Process %d was sent to the hdd blocking queue\n",
+				controller->runningProcess->PID);
+	}
+	else if(IODeviceID == 3) // Send process to video blocking queue
+	{
+		Queue_add(controller->videoQueue, controller->runningProcess);
+		printf("Process %d was sent to the video blocking queue\n",
+				controller->runningProcess->PID);
+	}
+
+	controller->runningProcess = Queue_remove(controller->readyQueue);
+	printf("Process %d is now in the running state\n", controller->runningProcess->PID);
 }
 
 
