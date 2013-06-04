@@ -1,44 +1,60 @@
 #include <stdlib.h>
+#include <stdio.h>
 #include <stddef.h>
-#include <time.h>
+#include <pthread.h>
 #include "device_io.h"
-#include "CPU.h"
+//#include "CPU.h"
 
-DeviceIOPtr initialize(CpuPtr cpu) {
-       srand(time(NULL)); //random number generator seed.
+DeviceIO initialize() {
+       srand(time(NULL));
        
-       DeviceIOPtr temp_dev_io = (DeviceIOPtr) malloc(sizeof(DeviceIOStr));
+       DeviceIO temp_dev_io = (DeviceIO) malloc(sizeof(DeviceIOStr));
        temp_dev_io->io_interrupt_current_count = 0; 
-       temp_dev_io->io_interrupt_time = rand() % MAX_INTERRUPT_DELAY;
+       temp_dev_io->io_interrupt_time = 100 + rand() % MAX_INTERRUPT_DELAY;
        temp_dev_io->io_interrupt = 1;
-       temp_dev_io->io_cpu = cpu;
+       //temp_dev_io->io_cpu = cpu;
        return temp_dev_io;
 }
 
-int devio_sleep(DeviceIOPtr temp_dev_io) {
-     temp_dev_io->io_interrupt_time = 0;
-     return 0;
-}
 
-int devio_awake(DeviceIOPtr temp_dev_io) {
-     temp_dev_io->io_interrupt_time = rand() % MAX_INTERRUPT_DELAY;
-     temp_dev_io->io_interrupt_current_count = 0; 
-     return 0;
-}
 
-void increment(DeviceIOPtr temp_dev_io) {
-     //!!!While loop looks like a bad idea, consider using another method!!!
+void devioReActivate(DeviceIO temp_dev_io) {
+     temp_dev_io->io_interrupt_time = 100 + rand() % MAX_INTERRUPT_DELAY;
+     temp_dev_io->io_interrupt_current_count = 0;
+}
+/*
+void devLoop(DeviceIO temp_dev_io) {
      while(++temp_dev_io->io_interrupt_current_count != temp_dev_io->io_interrupt_time) {
           temp_dev_io->io_interrupt_current_count = temp_dev_io->io_interrupt_current_count % MAX_INTERRUPT_DELAY;
      }
-     interrupt_cpu(temp_dev_io);
-     return;
+     //interrupt_cpu();
 }
 
-int interrupt_cpu(DeviceIOPtr temp_dev_io) {
-     //Needs to interrupt CPU
-     //Need to implement CPU interrupt in CPU.c
+void int interruptCpu(DeviceIO temp_dev_io) {
+     cpu->iterruptFlag = temp_dev_io->io_interrupt;
+     
+}
+*/
+static void *deviceLoop(void* num) {
+     DeviceIO temp_dev_io;
+     temp_dev_io = initialize();
+     //while() {
+          while(++temp_dev_io->io_interrupt_current_count != temp_dev_io->io_interrupt_time) {
+               printf("%d",temp_dev_io->io_interrupt_current_count);
+               temp_dev_io->io_interrupt_current_count = temp_dev_io->io_interrupt_current_count % MAX_INTERRUPT_DELAY;
+          }  
+     //}
      return 0;
+}
+
+void startDeviceIO(int num) {
+     pthread_t device_thread;
+     pthread_create(&device_thread, NULL, deviceLoop, (void *) num);
+}
+
+int main(void) {
+      startDeviceIO(5);
+      pthread_exit(NULL);
 }
 
 /*
