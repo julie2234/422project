@@ -36,7 +36,7 @@ typedef CpuStr* CpuPtr;
 CpuPtr cpuConstruct(ControllerPtr controller);
 void cpuRun(CpuPtr cpu);
 void determineSystemCall(CpuPtr cpu);
-void determineInterrupt(int interruptType, int processID);
+void determineInterrupt(CpuPtr cpu, int interruptType, int processID);
 void setInterrupt(int interruptID, int processID);
 
 #endif

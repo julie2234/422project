@@ -47,7 +47,7 @@ void cpuRun(CpuPtr cpu)
 		int interruptIndex = 0;
 		while(interruptFlag == 1)
 		{
-			determineInterrupt(interruptList[interruptIndex], interruptProcessList[interruptIndex]);
+			determineInterrupt(cpu, interruptList[interruptIndex], interruptProcessList[interruptIndex]);
 
 //			if (interruptList[interruptIndex] == 8)
 //			{
@@ -138,14 +138,14 @@ void determineSystemCall(CpuPtr cpu)
 	}
 }
 
-void determineInterrupt(int interruptType, int processID)
+void determineInterrupt(CpuPtr cpu, int interruptType, int processID)
 {
 	switch(interruptType)
 	{
 		case 0: // timer interrupt
 		{
 			printf("Timer Interrupt\n");
-			//scheduler(cpu->controller);
+			scheduler(cpu->controller);
 			break;
 		}
 
