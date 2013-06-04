@@ -144,7 +144,8 @@ void determineInterrupt(int interruptType, int processID)
 	{
 		case 0: // timer interrupt
 		{
-			printf("Timer Interupt\n");
+			printf("Timer Interrupt\n");
+			//scheduler(cpu->controller);
 			break;
 		}
 

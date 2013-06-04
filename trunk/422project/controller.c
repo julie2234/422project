@@ -14,10 +14,10 @@
 
 ControllerPtr controllerConstruct() {
 	ControllerPtr temp_controller = (ControllerPtr) malloc (sizeof(ControllerStr));
-	temp_controller->readyQueue = Queue_construct(5);
-	temp_controller->kbQueue = Queue_construct(3);
-	temp_controller->hddQueue = Queue_construct(3);
-	temp_controller->videoQueue = Queue_construct(3);
+	temp_controller->readyQueue = Queue_construct();
+	temp_controller->kbQueue = Queue_construct();
+	temp_controller->hddQueue = Queue_construct();
+	temp_controller->videoQueue = Queue_construct();
 	return temp_controller;
 }
 
@@ -28,8 +28,11 @@ int main ()
 	
 	//just for testing
 	controller->processList[0] = pcbConstruct(0, 1);
+	sleep(1);
 	controller->processList[1] = pcbConstruct(1, 3);
+	sleep(1);
 	controller->processList[2] = pcbConstruct(2, 2);
+	sleep(1);
 	controller->processList[3] = pcbConstruct(3, 4);
 	
 
