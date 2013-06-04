@@ -5,10 +5,7 @@
  *      Author: tyler
  */
 
-#include <stdio.h>
-#include <pthread.h>
 #include "keyboard_io.h"
-#include "controller.h"
 
 int continueListening = 1;
 int process_waiting;
