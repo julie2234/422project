@@ -12,6 +12,7 @@
 #include <time.h>
 #include "PCB.h"
 #include "keyboard_io.h"
+#include "device_io.h"
 
 
 #define TICK_TIME 100000000L;
@@ -26,7 +27,8 @@ typedef struct cpu_str
 {
 	PcbPtr current_pcb;
 	ControllerPtr controller;
-	//list of possible interrupts to know what to do when an interrupt occurs.
+	DeviceIO hdd_device_io;
+	DeviceIO video_device_io;
 
 } CpuStr;
 
