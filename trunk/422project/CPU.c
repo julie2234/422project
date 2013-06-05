@@ -28,7 +28,7 @@ CpuPtr cpuConstruct(ControllerPtr passedInController)
 //Read this to know what nanosleep does.
 void cpuRun(CpuPtr cpu)
 {
-	int PC = cpu->current_pcb->currentCount;
+	int PC = cpu->controller->runningProcess->currentCount;
 	int max = MAX_PC
 	struct timespec timePerTick, timeRemaining;
 	timePerTick.tv_sec = 0;
@@ -44,7 +44,7 @@ void cpuRun(CpuPtr cpu)
 		//This could be unnecessary, but I don't think
 		//we want to have to worry about what the PC value is
 		//for a process somewhere else when this process get's interrupted.
-		cpu->current_pcb->currentCount = PC;
+		cpu->controller->runningProcess->currentCount = PC;
 
 		int interruptIndex = 0;
 		while(interruptFlag == 1)
@@ -65,7 +65,7 @@ void cpuRun(CpuPtr cpu)
 
 		for(; index < 8; index++)
 		{
-			if(cpu->current_pcb->serviceCallValues[index] == PC)
+			if(cpu->controller->runningProcess->serviceCallValues[index] == PC)
 			{
 				//call deviceIO service routine
 				determineSystemCall(cpu);
