@@ -11,6 +11,8 @@
 #include "process.h"
 #include "timer.h"
 #include "queue.h"
+#include "device_io.h"
+#include "CPU.h"
 
 typedef struct controller_str {
 	PcbPtr processList[4];
@@ -20,6 +22,8 @@ typedef struct controller_str {
 	QueuePtr hddQueue;
 	PcbPtr runningProcess;
 	PcbPtr interruptedProcess;
+	DeviceIOPtr hddDeviceIO;
+	DeviceIOPtr videoDeviceIO;
 } ControllerStr;
 
 typedef ControllerStr* ControllerPtr;

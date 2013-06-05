@@ -35,10 +35,7 @@ void cpuRun(CpuPtr cpu)
 	while(PC < max)
 	{
 		PC++;
-		if(PC == max - 1)
-		{
-			PC = 0;
-		}
+		PC = PC % max;
 		//This could be unnecessary, but I don't think
 		//we want to have to worry about what the PC value is
 		//for a process somewhere else when this process get's interrupted.
@@ -91,7 +88,7 @@ void setInterrupt(int interruptID, int processID)
 
 void determineSystemCall(CpuPtr cpu)
 {
-	int process_type = cpu->current_pcb->processType;
+	int process_type = cpu->controller->runningProcess->processType;
 	switch(process_type)
 	{
 		case 0:
@@ -109,15 +106,16 @@ void determineSystemCall(CpuPtr cpu)
 		}
 		case 2:
 		{
-			//This is HDD_io, so this can go to the device_io class/source file
-			//(whatever you want to call it).
-			printf("HDD IO");
+			DeviceIOPtr hddIO = cpu->controller->hddDeviceIO;
+			hddIO->device_io_process = cpu->controller->runningProcess->PID;
+			IO_block(cpu->controller, hddIO->device_io_interrupt);
 			break;
 		}
 		case 3:
 		{
-			//Video_io, same idea as HDD_io, but goes to it's own source/thread.
-			printf("Video IO");
+			DeviceIOPtr videoIO = cpu->controller->hddDeviceIO;
+			videoIO->device_io_process = cpu->controller->runningProcess->PID;
+			IO_block(cpu->controller, videoIO->device_io_interrupt);
 			break;
 		}
 		case 4:
@@ -138,9 +136,9 @@ void determineSystemCall(CpuPtr cpu)
 	}
 }
 
-void determineInterrupt(CpuPtr cpu, int interruptType, int processID)
+void determineInterrupt(CpuPtr cpu, int interruptID, int processID)
 {
-	switch(interruptType)
+	switch(interruptID)
 	{
 		case 0: // timer interrupt
 		{
@@ -155,6 +153,7 @@ void determineInterrupt(CpuPtr cpu, int interruptType, int processID)
 			printf("You pressed %c\n", key_press);
 			printf("Which is %d in ascii\n", key_press);
 			printf("Process %d", processID);
+			setProcessReady(cpu->controller, interruptID);
 			break;
 		}
 

@@ -23,7 +23,7 @@ typedef struct DeviceIO {
         int device_io_process;
         struct PcbStr* io_pcb;
 } DeviceIOStr;
-typedef DeviceIOStr* DeviceIO;
+typedef DeviceIOStr* DeviceIOPtr;
 
 void startDevice();
 #endif

@@ -7,12 +7,13 @@
 
 #ifndef CPU_H
 #define CPU_H
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-#include "controller.h"
 #include "PCB.h"
 #include "keyboard_io.h"
+#include "controller.h"
 
 
 #define TICK_TIME 100000000L;
@@ -27,7 +28,6 @@ typedef struct cpu_str
 {
 	PcbPtr current_pcb;
 	ControllerPtr controller;
-	//list of possible interrupts to know what to do when an interrupt occurs.
 
 } CpuStr;
 
