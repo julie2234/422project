@@ -28,7 +28,7 @@ int main (int argc, char* argv[])
 	int process_num;
 	int kb_num;
 	int io_num;
-	int pc_size;
+	int pc_num;
 
 	if(argc == 9)
 	{
@@ -45,8 +45,8 @@ int main (int argc, char* argv[])
 		//printf("%d\n", io_num);
 
 		//printf("%s ", argv[7]);// -pc
-		pc_size = (int) strtol(argv[8], NULL, 10);
-		//printf("%d\n", pc_size);
+		pc_num = (int) strtol(argv[8], NULL, 10);
+		//printf("%d\n", pc_num);
 	}
 	else
 	{
@@ -59,7 +59,7 @@ int main (int argc, char* argv[])
 
 	ControllerPtr controller = controllerConstruct();
 	srand(time(NULL)); //Seeds the random number generator
-	createProcesses(process_num, kb_num, io_num, controller);
+	createProcesses(process_num, kb_num, io_num, pc_num, controller);
 
 //	//just for testing
 //	controller->processList[0] = pcbConstruct(0, 1);
@@ -153,7 +153,8 @@ void setProcessReady(ControllerPtr controller, int IODeviceID)
         }
 }
 
-void createProcesses(int total_processes, int kb_amount, int io_amount, ControllerPtr controller)
+void createProcesses(int total_processes, int kb_amount, int io_amount, int pc_amount,
+		ControllerPtr controller)
 {
 	controller->processList = (PcbPtr*) malloc((total_processes + 1) * sizeof(PcbPtr));
 	int cpu_bound_processes = total_processes - kb_amount - io_amount;
