@@ -51,11 +51,6 @@ void cpuRun(CpuPtr cpu)
 		{
 			determineInterrupt(cpu, interruptList[interruptIndex], interruptProcessList[interruptIndex]);
 
-//			if (interruptList[interruptIndex] == 8)
-//			{
-//				scheduler(cpu->controller);
-//			}
-
 			interruptIndex++;
 			if(interruptListSize == interruptIndex) //Check to see if there are more interrupts waiting
 			{
@@ -149,7 +144,7 @@ void determineInterrupt(CpuPtr cpu, int interruptType, int processID)
 	{
 		case 0: // timer interrupt
 		{
-			printf("Timer Interrupt\n");
+			printf("------------------------------\nTimer Interrupt\n------------------------------\n");
 			scheduler(cpu->controller);
 			break;
 		}
@@ -157,7 +152,7 @@ void determineInterrupt(CpuPtr cpu, int interruptType, int processID)
 		case 1: //KB interrupt
 		{
 			char key_press = getKeyPress();
-      printf("K I/O - %c key pressed, P%d interrupted", key_press, processID);
+      printf("------------------------------\nKB I/O Interrupt - %c key pressed, ", key_press, processID);
 			//printf("You pressed %c\n", key_press);
 			//printf("Which is %d in ascii\n", key_press);
 			setProcessReady(cpu->controller, 1);
@@ -166,7 +161,7 @@ void determineInterrupt(CpuPtr cpu, int interruptType, int processID)
 
 		case 2: //hdd interrupt
 		{
-      printf("HDD I/O - P%d interrupted, data transfer", processID);
+      printf("------------------------------\nHDD I/O Interrupt, ", processID);
 			//printf("HDD Device done transfering data, now giving data to process\n");
 			setProcessReady(cpu->controller, 2);
 
@@ -175,7 +170,7 @@ void determineInterrupt(CpuPtr cpu, int interruptType, int processID)
 
 		case 3: //video interrupt
 		{
-      printf("Vidio I/O - P%d interrupted, data transfer from Video I/O", processID);
+      printf("------------------------------\nVIDEO I/O Interrupt, ", processID);
 			//printf("Data done being transfered to video output device\n");
 			setProcessReady(cpu->controller, 3);
 			break;
