@@ -28,6 +28,7 @@ ControllerPtr controllerConstruct();
 void timeEndInterrupt();
 void scheduler(ControllerPtr this);
 void IO_block(ControllerPtr controller, int IODeviceID);
+void setProcessReady(ControllerPtr controller, int IODeviceID);
 
 #endif
 
