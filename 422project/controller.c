@@ -73,19 +73,20 @@ int main (int argc, char* argv[])
 	for (i = 0; i < process_num; i++)
 	{
 		int type = controller->processList[i]->processType;
-		printf("P%d is type %d and has service call values", controller->processList[i]->PID, type);
+		printf("P%d, type %d, service calls [", controller->processList[i]->PID, type);
 		int j;
 		for (j = 0; j < 8; j++) {
 			printf(" %d", controller->processList[i]->serviceCallValues[j]);
 		}
-		printf("\n");
+		printf(" ]\n");
 		Queue_add(controller->readyQueue, controller->processList[i]);
 	}
+	printf("\n");
 	controller->runningProcess = Queue_remove(controller->readyQueue);
-	printf("\nP%d is running \n", controller->runningProcess->PID);
-
+	//printf("\nP%d is running \n", controller->runningProcess->PID);
+	printCurrentState(controller);
+	
 	startTimer(5);
-	//scheduler(controller);
 
 	CpuPtr cpu = cpuConstruct(controller);
 	cpuRun(cpu);
@@ -94,15 +95,41 @@ int main (int argc, char* argv[])
 	return 0;
 }
 
+void printCurrentState(ControllerPtr this) {
+	int i;
+	printf("RUNNING [ P%d ]\n", this->runningProcess->PID);
+	printf("READY_Q [ ");
+	for (i = 0; i <= Queue_size(this->readyQueue); i++) {
+		printf("P%d ", this->readyQueue->pcbs[i]->PID);
+	}
+	printf("]\n");
+	printf("KB_Q    [ ");
+	for (i = 0; i < Queue_size(this->kbQueue); i++) {
+		printf("P%d ", this->kbQueue->pcbs[i]->PID);
+	}
+	printf("]\n");
+	printf("HDD_Q   [ ");
+	for (i = 0; i < Queue_size(this->hddQueue); i++) {
+		printf("P%d ", this->hddQueue->pcbs[i]->PID);
+	}
+	printf("]\n");
+	printf("VIDEO_Q [ ");
+	for (i = 0; i < Queue_size(this->videoQueue); i++) {
+		printf("P%d ", this->videoQueue->pcbs[i]->PID);
+	}
+	printf("]\n");
+}
+
 
 void scheduler(ControllerPtr this)
 {
-	printf("Process %d is out of time.", this->runningProcess->PID);
+	//printf("Process %d is out of time.", this->runningProcess->PID);
 	Queue_add(this->readyQueue, this->runningProcess);
 	PcbPtr process = Queue_remove(this->readyQueue);
-	printf("\nP%d has been loaded into the registers and is now running \n", process->PID);
+	//printf("\nP%d has been loaded into the registers and is now running \n", process->PID);
 	process->state = RUNNING; // change the state in its PCB to RUNNING
 	this->runningProcess = process;
+	printCurrentState(this);
 }
 
 void IO_block(ControllerPtr controller, int IODeviceID)
@@ -110,25 +137,26 @@ void IO_block(ControllerPtr controller, int IODeviceID)
 	if(IODeviceID == 1) // Send process to Keyboard blocking queue
 	{
 		Queue_add(controller->kbQueue, controller->runningProcess);
-		printf("Process %d was sent to the keyboard blocking queue\n",
+		printf("------------------------------\nP%d sent to KB_Q\n------------------------------\n",
 				controller->runningProcess->PID);
 	}
 
 	else if(IODeviceID == 2) //Send process to hdd blocking queue
 	{
 		Queue_add(controller->hddQueue, controller->runningProcess);
-		printf("Process %d was sent to the hdd blocking queue\n",
-				controller->runningProcess->PID);
+		printf("------------------------------\nP%d sent to HDD_Q\n------------------------------\n",
+			   controller->runningProcess->PID);
 	}
 	else if(IODeviceID == 3) // Send process to video blocking queue
 	{
 		Queue_add(controller->videoQueue, controller->runningProcess);
-		printf("Process %d was sent to the video blocking queue\n",
-				controller->runningProcess->PID);
+		printf("------------------------------\nP%d sent to VIDEO_Q\n------------------------------\n",
+			   controller->runningProcess->PID);
 	}
 
 	controller->runningProcess = Queue_remove(controller->readyQueue);
-	printf("Process %d is now in the running state\n", controller->runningProcess->PID);
+	printCurrentState(controller);
+	//printf("Process %d is now in the running state\n", controller->runningProcess->PID);
 }
 
 void setProcessReady(ControllerPtr controller, int IODeviceID)
@@ -137,20 +165,21 @@ void setProcessReady(ControllerPtr controller, int IODeviceID)
         {
                 PcbPtr temp_pcb = Queue_remove(controller->kbQueue);
                 Queue_add(controller->readyQueue, temp_pcb);
-                printf("Process %d removed from keyboard blocked queue and added to the ready queue\n", temp_pcb->PID);
+                printf("P%d moved from KB_Q to READY_Q\n------------------------------\n", temp_pcb->PID);
         }
         else if(IODeviceID == 2) //HDD blocking queue returns process to ready queue.
         {
                 PcbPtr temp_pcb = Queue_remove(controller->hddQueue);
                 Queue_add(controller->readyQueue, temp_pcb);
-                printf("Process %d removed from HDD blocked queue and added to the ready queue\n", temp_pcb->PID);
+                printf("P%d moved from HDD_Q to READY_Q\n------------------------------\n", temp_pcb->PID);
         }
         else if(IODeviceID == 3)
         {
                 PcbPtr temp_pcb = Queue_remove(controller->videoQueue);
                 Queue_add(controller->readyQueue, temp_pcb);
-                printf("Process %d removed from video blocked queue and added to the ready queue\n", temp_pcb->PID);
+                printf("P%d moved from VIDEO_Q to READY_Q\n------------------------------\n", temp_pcb->PID);
         }
+		printCurrentState(controller);
 }
 
 void createProcesses(int total_processes, int kb_amount, int io_amount, int pc_amount,

@@ -40,6 +40,8 @@ int      Queue_add(QueuePtr queue, PcbPtr pcb);
  */
 PcbPtr   Queue_remove(QueuePtr queue);
 
+PcbPtr Queue_peek(QueuePtr queue);
+
 
 /*typedef struct queue_str {
  int head;

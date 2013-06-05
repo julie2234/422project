@@ -46,6 +46,14 @@ PcbPtr Queue_remove(QueuePtr queue) {
 	return queue->pcbs[pos];
 }
 
+PcbPtr Queue_peek(QueuePtr queue) {
+	int pos;
+	if (queue == 0 || queue->count == 0)
+		return 0;
+	pos = queue->head;
+	return queue->pcbs[pos];
+}
+
 
 
 /*QueuePtr Queue_construct(int init_cap) {
