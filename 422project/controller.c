@@ -186,7 +186,7 @@ void createProcesses(int total_processes, int kb_amount, int io_amount, int pc_a
 		ControllerPtr controller)
 {
 	controller->processList = (PcbPtr*) malloc((total_processes + 1) * sizeof(PcbPtr));
-	int cpu_bound_processes = total_processes - kb_amount - io_amount;
+	int cpu_bound_processes = total_processes - kb_amount - io_amount;// TODO subtract pc_amount
 	int processID = 0;
 	int index = 0;
 	for(; index < cpu_bound_processes; index++)
