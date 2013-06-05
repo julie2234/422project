@@ -99,23 +99,51 @@ void printCurrentState(ControllerPtr this) {
 	int i;
 	printf("RUNNING [ P%d ]\n", this->runningProcess->PID);
 	printf("READY_Q [ ");
-	for (i = 0; i <= Queue_size(this->readyQueue); i++) {
-		printf("P%d ", this->readyQueue->pcbs[i]->PID);
+	int pos = this->readyQueue->head;
+	int size = this->readyQueue->count;
+	int max = this->readyQueue->max;
+	for (i = 0; i < size; i++) {
+		if (pos >= max) {
+			pos = 0;
+		}
+		printf("P%d ", this->readyQueue->pcbs[pos]->PID);
+		pos++;
 	}
 	printf("]\n");
 	printf("KB_Q    [ ");
-	for (i = 0; i < Queue_size(this->kbQueue); i++) {
-		printf("P%d ", this->kbQueue->pcbs[i]->PID);
+	pos = this->kbQueue->head;
+	size = this->kbQueue->count;
+	max = this->kbQueue->max;
+	for (i = 0; i < size; i++) {
+		if (pos >= max) {
+			pos = 0;
+		}
+		printf("P%d ", this->kbQueue->pcbs[pos]->PID);
+		pos++;
 	}
 	printf("]\n");
 	printf("HDD_Q   [ ");
-	for (i = 0; i < Queue_size(this->hddQueue); i++) {
-		printf("P%d ", this->hddQueue->pcbs[i]->PID);
+	pos = this->hddQueue->head;
+	size = this->hddQueue->count;
+	max = this->hddQueue->max;
+	for (i = 0; i < size; i++) {
+		if (pos >= max) {
+			pos = 0;
+		}
+		printf("P%d ", this->hddQueue->pcbs[pos]->PID);
+		pos++;
 	}
 	printf("]\n");
 	printf("VIDEO_Q [ ");
-	for (i = 0; i < Queue_size(this->videoQueue); i++) {
-		printf("P%d ", this->videoQueue->pcbs[i]->PID);
+	pos = this->videoQueue->head;
+	size = this->videoQueue->count;
+	max = this->videoQueue->max;
+	for (i = 0; i < size; i++) {
+		if (pos >= max) {
+			pos = 0;
+		}
+		printf("P%d ", this->videoQueue->pcbs[pos]->PID);
+		pos++;
 	}
 	printf("]\n");
 }
