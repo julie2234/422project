@@ -13,7 +13,7 @@
 #include "queue.h"
 
 typedef struct controller_str {
-	PcbPtr processList[4];
+	PcbPtr* processList;
 	QueuePtr readyQueue;
 	QueuePtr kbQueue;
 	QueuePtr videoQueue;
