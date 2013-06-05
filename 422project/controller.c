@@ -10,6 +10,7 @@
 #include <pthread.h>
 
 #include "controller.h"
+#include "CPU.h"
 
 ControllerPtr controllerConstruct() {
 	ControllerPtr temp_controller = (ControllerPtr) malloc (sizeof(ControllerStr));
@@ -17,8 +18,6 @@ ControllerPtr controllerConstruct() {
 	temp_controller->kbQueue = Queue_construct();
 	temp_controller->hddQueue = Queue_construct();
 	temp_controller->videoQueue = Queue_construct();
-	temp_controller->hddDeviceIO = device_io_constructor(2, -1);
-	temp_controller->videoDeviceIO = device_io_constructor(3, -1);
 	return temp_controller;
 }
 
@@ -95,28 +94,6 @@ void IO_block(ControllerPtr controller, int IODeviceID)
 
 	controller->runningProcess = Queue_remove(controller->readyQueue);
 	printf("Process %d is now in the running state\n", controller->runningProcess->PID);
-}
-
-void setProcessReady(ControllerPtr controller, int IODeviceID)
-{
-	if(IODeviceID == 1) //KB blocking queue returns process to ready queue.
-	{
-		PcbPtr temp_pcb = Queue_remove(controller->kbQueue);
-		Queue_add(controller->readyQueue, temp_pcb);
-		printf("Process %d removed from keyboard blocked queue and added to the ready queue\n", temp_pcb->PID);
-	}
-	else if(IODeviceID == 2) //HDD blocking queue returns process to ready queue.
-	{
-		PcbPtr temp_pcb = Queue_remove(controller->hddQueue);
-		Queue_add(controller->readyQueue, temp_pcb);
-		printf("Process %d removed from HDD blocked queue and added to the ready queue\n", temp_pcb->PID);
-	}
-	else if(IODeviceID == 3)
-	{
-		PcbPtr temp_pcb = Queue_remove(controller->videoQueue);
-		Queue_add(controller->readyQueue, temp_pcb);
-		printf("Process %d removed from video blocked queue and added to the ready queue\n", temp_pcb->PID);
-	}
 }
 
 

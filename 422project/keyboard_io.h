@@ -11,7 +11,6 @@
 #include <stdio.h>
 #include <pthread.h>
 #include "controller.h"
-#include "CPU.h"
 
 void *keyboardListener(void* parameter);
 void startKeyboardListener(int process_id);
