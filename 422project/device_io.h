@@ -29,13 +29,4 @@ DeviceIO devioReActivate(DeviceIO temp_dev_io);
 void interruptCpu(DeviceIO temp_dev_io);
 static void *deviceLoop(void* temp_dev_io_ptr);
 void startDeviceIO(DeviceIO temp_dev_io);
-
-
-
-
-DeviceIO device_io_constructor(int io_interrupt_id, int io_process_id);
-DeviceIO devioReActivate(DeviceIO temp_dev_io);
-void interruptCpu(DeviceIO temp_dev_io);
-static void *deviceLoop(void* temp_dev_io_ptr);
-void startDeviceIO(DeviceIO temp_dev_io);
 #endif
