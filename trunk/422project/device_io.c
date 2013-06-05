@@ -35,7 +35,6 @@ void interruptCpu(DeviceIO temp_dev_io) {
 //a looping thread that runs until device io activity is set to 0
 static void *deviceLoop(void* temp_dev_io_ptr) {
        DeviceIO temp_dev_io = (DeviceIO) temp_dev_io_ptr;
-       DeviceIOPtr temp_dev_io = (DeviceIOPtr) temp_dev_io_ptr;
        while (temp_dev_io->io_interrupt_current_count != temp_dev_io->io_interrupt_time) {
              temp_dev_io->io_interrupt_current_count = temp_dev_io->io_interrupt_current_count % temp_dev_io->io_interrupt_time;
              temp_dev_io->io_interrupt_current_count++;

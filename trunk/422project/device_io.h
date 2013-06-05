@@ -12,8 +12,8 @@
 #include <stdio.h>
 #include <pthread.h>
 
-#define MAX_INTERRUPT_DELAY     100;
-#define MIN_INTERRUPT_DELAY     100;
+#define MAX_INTERRUPT_DELAY     10000;
+#define MIN_INTERRUPT_DELAY     1000;
 
 typedef struct DeviceIO {
         int io_interrupt_current_count;
