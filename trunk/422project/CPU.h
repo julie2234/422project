@@ -16,7 +16,7 @@
 
 
 #define TICK_TIME 100000000L;
-#define MAX_PC 1000;
+#define MAX_PC 100;
 
 #define TIMER_INTERRUPT = 0;
 #define HDD_INTERRUPT = 1;
