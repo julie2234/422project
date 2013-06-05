@@ -157,15 +157,17 @@ void determineInterrupt(CpuPtr cpu, int interruptType, int processID)
 		case 1: //KB interrupt
 		{
 			char key_press = getKeyPress();
-			printf("You pressed %c\n", key_press);
-			printf("Which is %d in ascii\n", key_press);
+      printf("K I/O - %c key pressed, P%d interrupted", key_pressed, processID);
+			//printf("You pressed %c\n", key_press);
+			//printf("Which is %d in ascii\n", key_press);
 			setProcessReady(cpu->controller, 1);
 			break;
 		}
 
 		case 2: //hdd interrupt
 		{
-			printf("HDD Device done transfering data, now giving data to process\n");
+      printf("HDD I/O - P%d interrupted, data transfer", processID);
+			//printf("HDD Device done transfering data, now giving data to process\n");
 			setProcessReady(cpu->controller, 2);
 
 			break;
@@ -173,7 +175,8 @@ void determineInterrupt(CpuPtr cpu, int interruptType, int processID)
 
 		case 3: //video interrupt
 		{
-			printf("Data done being transfered to video output device\n");
+      printf("Vidio I/O - P%d interrupted, data transfer from Video I/O", processID);
+			//printf("Data done being transfered to video output device\n");
 			setProcessReady(cpu->controller, 3);
 			break;
 		}
