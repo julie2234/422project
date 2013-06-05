@@ -7,7 +7,7 @@
 
 #include "device_io.h"
 
-DeviceIO device_io_contrustor(int io_interrupt_id, int io_process_id) {
+DeviceIO device_io_constructor(int io_interrupt_id, int io_process_id) {
        srand(time(NULL));
        
        DeviceIO temp_dev_io = (DeviceIO) malloc(sizeof(DeviceIOStr));

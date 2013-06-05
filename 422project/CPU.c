@@ -19,6 +19,8 @@ CpuPtr cpuConstruct(ControllerPtr passedInController)
 	CpuPtr temp_cpu = (CpuPtr) malloc (sizeof(CpuStr));
 	temp_cpu->controller = passedInController;
 	temp_cpu->current_pcb = passedInController->runningProcess;
+	temp_cpu->hdd_device_io = device_io_constructor(2, -1);
+	temp_cpu->video_device_io = device_io_constructor(3, -1);
 	return temp_cpu;
 }
 
@@ -111,13 +113,17 @@ void determineSystemCall(CpuPtr cpu)
 		{
 			//This is HDD_io, so this can go to the device_io class/source file
 			//(whatever you want to call it).
-			printf("HDD IO");
+			cpu->hdd_device_io->device_io_process = cpu->controller->runningProcess;
+			startDeviceIO(cpu->hdd_device_io);
+			IO_block(cpu->controller, 2);
 			break;
 		}
 		case 3:
 		{
 			//Video_io, same idea as HDD_io, but goes to it's own source/thread.
-			printf("Video IO");
+			cpu->video_device_io->device_io_process = cpu->controller->runningProcess;
+			startDeviceIO(cpu->video_device_io);
+			IO_block(cpu->controller, 3);
 			break;
 		}
 		case 4:
