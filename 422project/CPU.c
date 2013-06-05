@@ -157,7 +157,7 @@ void determineInterrupt(CpuPtr cpu, int interruptType, int processID)
 		case 1: //KB interrupt
 		{
 			char key_press = getKeyPress();
-      printf("K I/O - %c key pressed, P%d interrupted", key_pressed, processID);
+      printf("K I/O - %c key pressed, P%d interrupted", key_press, processID);
 			//printf("You pressed %c\n", key_press);
 			//printf("Which is %d in ascii\n", key_press);
 			setProcessReady(cpu->controller, 1);
