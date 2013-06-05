@@ -8,6 +8,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <pthread.h>
+#include <time.h>
 
 #include "controller.h"
 #include "CPU.h"
@@ -25,14 +26,12 @@ ControllerPtr controllerConstruct() {
 int main ()
 {
 	ControllerPtr controller = controllerConstruct();
-	
+	srand(time(NULL)); //Seeds the random number generator
+
 	//just for testing
 	controller->processList[0] = pcbConstruct(0, 1);
-	sleep(1);
 	controller->processList[1] = pcbConstruct(1, 3);
-	sleep(1);
 	controller->processList[2] = pcbConstruct(2, 2);
-	sleep(1);
 	controller->processList[3] = pcbConstruct(3, 4);
 	
 
