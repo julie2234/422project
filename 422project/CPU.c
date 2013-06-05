@@ -160,19 +160,21 @@ void determineInterrupt(CpuPtr cpu, int interruptType, int processID)
 			char key_press = getKeyPress();
 			printf("You pressed %c\n", key_press);
 			printf("Which is %d in ascii\n", key_press);
-			printf("Process %d", processID);
+			setProcessReady(cpu->controller, 1);
 			break;
 		}
 
 		case 2: //hdd interrupt
 		{
-			//do the hdd interrupt functions
+			printf("HDD Device done transfering data, now giving data to process\n");
+			setProcessReady(cpu->controller, 2);
 			break;
 		}
 
 		case 3: //video interrupt
 		{
-			//do the video interrupt functions
+			printf("Data done being transfered to video output device");
+			setProcessReady(cpu->controller, 3);
 			break;
 		}
 
