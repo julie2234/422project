@@ -29,6 +29,8 @@ void timeEndInterrupt();
 void scheduler(ControllerPtr this);
 void IO_block(ControllerPtr controller, int IODeviceID);
 void setProcessReady(ControllerPtr controller, int IODeviceID);
+void createProcesses(int total_processes, int kb_amount, int io_amount, int pc_amount,
+		ControllerPtr controller);
 
 #endif
 
