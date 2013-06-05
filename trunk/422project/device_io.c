@@ -7,10 +7,10 @@
 
 #include "device_io.h"
 
-DeviceIOPtr device_io_contrustor(int io_interrupt_id, int io_process_id) {
+DeviceIO device_io_contrustor(int io_interrupt_id, int io_process_id) {
        srand(time(NULL));
        
-       DeviceIOPtr temp_dev_io = (DeviceIOPtr) malloc(sizeof(DeviceIOStr));
+       DeviceIO temp_dev_io = (DeviceIO) malloc(sizeof(DeviceIOStr));
        temp_dev_io->io_interrupt_current_count = 0;
        temp_dev_io->io_interrupt_time = MIN_INTERRUPT_DELAY + rand() % MAX_INTERRUPT_DELAY;
        temp_dev_io->device_io_interrupt = io_interrupt_id;
@@ -21,20 +21,20 @@ DeviceIOPtr device_io_contrustor(int io_interrupt_id, int io_process_id) {
 
 //Reset the io_interrupt_time to a new random value
 //Reset the current_count
-DeviceIOPtr devioReActivate(DeviceIOPtr temp_dev_io) {
+DeviceIO devioReActivate(DeviceIO temp_dev_io) {
      temp_dev_io->io_interrupt_time = MIN_INTERRUPT_DELAY + rand() % MAX_INTERRUPT_DELAY;
      temp_dev_io->io_interrupt_current_count = 0;
      return temp_dev_io;
 }
 
 //Interrupts the CPU
-void interruptCpu(DeviceIOPtr temp_dev_io) {
+void interruptCpu(DeviceIO temp_dev_io) {
      setInterrupt(temp_dev_io->device_io_interrupt,  temp_dev_io->device_io_process);
 }
 
 //a looping thread that runs until device io activity is set to 0
 static void *deviceLoop(void* temp_dev_io_ptr) {
-       DeviceIOPtr temp_dev_io = (DeviceIOPtr) temp_dev_io_ptr;
+       DeviceIO temp_dev_io = (DeviceIO) temp_dev_io_ptr;
        while (temp_dev_io->io_interrupt_current_count++ != temp_dev_io->io_interrupt_time) {
              temp_dev_io->io_interrupt_current_count = temp_dev_io->io_interrupt_current_count % MAX_INTERRUPT_DELAY;
        }
@@ -43,7 +43,8 @@ static void *deviceLoop(void* temp_dev_io_ptr) {
 }
 
 //Initializes the pthread
-void startDeviceIO(DeviceIOPtr temp_dev_io) {
+void startDeviceIO(DeviceIO temp_dev_io)
+{
      devioReActivate(temp_dev_io);
      pthread_t device_thread;
      pthread_create(&device_thread, NULL, deviceLoop, (void *) temp_dev_io);

@@ -11,7 +11,6 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <pthread.h>
-#include "CPU.h"
 
 #define MAX_INTERRUPT_DELAY     100;
 #define MIN_INTERRUPT_DELAY     100;
@@ -23,7 +22,7 @@ typedef struct DeviceIO {
         int device_io_process;
         struct PcbStr* io_pcb;
 } DeviceIOStr;
-typedef DeviceIOStr* DeviceIOPtr;
+typedef DeviceIOStr* DeviceIO;
 
 void startDevice();
 #endif

@@ -29,7 +29,7 @@ void *keyboardListener(void* parameter)
 
 void startKeyboardListener(int process_id)
 {
-	printf("Starting Keyboard Listener\n");
+	printf("Starting Keyboard Listener");
 	pthread_t keyboard_thread;
 	process_waiting = process_id;
 	pthread_create(&keyboard_thread, NULL, keyboardListener, NULL);
