@@ -8,10 +8,8 @@
 #include "PCB.h"
 #include <stdio.h>
 #include <stdlib.h>
-#include <time.h>
 
 PcbPtr pcbConstruct(int the_PID, int the_processType) {
-	srand(time(NULL));
 	PcbPtr temp_pcb = (PcbPtr) malloc(sizeof(PcbStr));
 	temp_pcb->PID = the_PID;
 	temp_pcb->processType = the_processType;
@@ -20,7 +18,6 @@ PcbPtr pcbConstruct(int the_PID, int the_processType) {
 	//temp_pcb->count =	// initialize count to a random number
 	temp_pcb->currentCount = 0;
 	int i;
-	srand(time(NULL)); //Seeds the random number generator
 	int max_pc = MAX_PC;
 	//int amountOfServiceCalls = sizeof(temp_pcb->serviceCallValues);
 	//I put 8 in the for loop because amountOfServiceCalls gets set to 32 for some reason
