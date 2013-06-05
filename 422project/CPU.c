@@ -74,7 +74,6 @@ void cpuRun(CpuPtr cpu)
 			{
 				//call deviceIO service routine
 				determineSystemCall(cpu);
-				printf(" PC is %d \n", PC);
 			}
 		}
 	}
@@ -168,12 +167,13 @@ void determineInterrupt(CpuPtr cpu, int interruptType, int processID)
 		{
 			printf("HDD Device done transfering data, now giving data to process\n");
 			setProcessReady(cpu->controller, 2);
+
 			break;
 		}
 
 		case 3: //video interrupt
 		{
-			printf("Data done being transfered to video output device");
+			printf("Data done being transfered to video output device\n");
 			setProcessReady(cpu->controller, 3);
 			break;
 		}
