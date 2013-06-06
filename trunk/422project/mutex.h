@@ -8,12 +8,18 @@
 #ifndef MUTEX_H
 #define MUTEX_H
 
+#include "queue.h"
+
 typedef struct mutex_str {
 	int owner;
-	//queue waitingQueue;
+	struct queue_str waitingQueue;
 } MutexStr;
 
 typedef MutexStr* MutexPtr;
+
+MutexPtr mutexConstruct();
+void Mutex_lock(MutexPtr mutex, PcbPtr pcb);
+void Mutex_unlock(MutexPtr mutex, PcbPtr pcb);
 
 #endif
 

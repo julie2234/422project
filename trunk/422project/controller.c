@@ -66,7 +66,10 @@ int main (int argc, char* argv[])
 			   "where 'x' is a number");
 		return 0;
 	}
-	
+
+	// Setup conditions
+	setupConditions();
+
 	ControllerPtr controller = controllerConstruct();
 	srand(time(NULL)); //Seeds the random number generator
 	createProcesses(process_num, kb_num, io_num, pc_num, controller);
@@ -87,12 +90,18 @@ int main (int argc, char* argv[])
 	controller->runningProcess = Queue_remove(controller->readyQueue);
 	printCurrentState(controller);
 	
+
+
 	run_flag = 1;
 	startTimer(2);
 	CpuPtr cpu = cpuConstruct(controller);
 	cpuRun(cpu);
 	
 	pthread_exit(NULL);
+
+	// Destroy conditions
+	//destructConditions();
+
 	return 0;
 }
 
@@ -154,12 +163,46 @@ void printCurrentState(ControllerPtr this) {
 	}
 	printf("]\n");
 	printf("M1 - ");
-	if (mem_mut.owner != 0) {
-		printf("P%d owns", mem_mut.owner);
+	if (mem_mut->owner != 0) {
+		printf("P%d owns Q=[", mem_mut->owner);
 	} else {
-		printf("none owns");
+		printf("none owns Q=[");
 	}
-	printf("\n");
+	pos = mem_mut->waitingQueue.head;
+	size = mem_mut->waitingQueue.count;
+	max = mem_mut->waitingQueue.max;
+	for (i = 0; i < size; i++) {
+		if (pos >= max) {
+			pos = 0;
+		}
+		printf("P%d ", mem_mut->waitingQueue.pcbs[pos]->PID);
+		pos++;
+	}
+	printf("]\n");
+	printf("C1 (mem_empty) Q - [");
+	pos = cond_no_mem->waiting->head;
+	size = cond_no_mem->waiting->count;
+	max = cond_no_mem->waiting->max;
+	for (i = 0; i < size; i++) {
+		if (pos >= max) {
+			pos = 0;
+		}
+		printf("P%d ", cond_no_mem->waiting->pcbs[pos]->PID);
+		pos++;
+	}
+	printf("]\n");
+	printf("C2 (mem_full) Q - [");
+	pos = cond_new_mem->waiting->head;
+	size = cond_new_mem->waiting->count;
+	max = cond_new_mem->waiting->max;
+	for (i = 0; i < size; i++) {
+		if (pos >= max) {
+			pos = 0;
+		}
+		printf("P%d ", cond_new_mem->waiting->pcbs[pos]->PID);
+		pos++;
+	}
+	printf("]\n");
 }
 
 
