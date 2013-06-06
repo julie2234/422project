@@ -1,7 +1,7 @@
 /*
  *  CPU.c
  *	GPOS Scheduler Simulation
- *  Team 8: Simerell, Trottier, Morris, Impola
+ *  Team 8: Simrell, Trottier, Morris, Impola
  *	TCSS 422, Spring 2013
  */
 
@@ -14,6 +14,7 @@ int interruptList[5]; //For interrupts that happen during other interrupts
 int interruptProcessList[5];
 int interruptListSize = 0; //The index for the interrupt list
 
+//This method constructs a CPU
 CpuPtr cpuConstruct(ControllerPtr passedInController)
 {
 	CpuPtr temp_cpu = (CpuPtr) malloc (sizeof(CpuStr));
@@ -26,6 +27,7 @@ CpuPtr cpuConstruct(ControllerPtr passedInController)
 
 //http://linux.die.net/man/2/nanosleep
 //Read this to know what nanosleep does.
+//This method starts the CPU
 void cpuRun(CpuPtr cpu)
 {
 	int PC = cpu->controller->runningProcess->currentCount;
@@ -36,10 +38,14 @@ void cpuRun(CpuPtr cpu)
 
 	while(PC < max)
 	{
-		PC++;
-		if(PC == max - 1)
+		cpu->controller->runningProcess->currentCount++;
+		PC = cpu->controller->runningProcess->currentCount;
+		printf("PC: %d\n", PC);
+		if(PC == max)
 		{
-			PC = 0;
+			printf("P%d has finished\n", cpu->controller->runningProcess->PID);
+			cpu->controller->runningProcess = Queue_remove(cpu->controller->readyQueue);
+			PC = cpu->controller->runningProcess->currentCount;
 		}
 		//This could be unnecessary, but I don't think
 		//we want to have to worry about what the PC value is
@@ -75,6 +81,7 @@ void cpuRun(CpuPtr cpu)
 	return;
 }
 
+//This function is what is called when something wants to do an interrupt.
 void setInterrupt(int interruptID, int processID)
 {
 	interruptFlag = 1;
@@ -85,6 +92,7 @@ void setInterrupt(int interruptID, int processID)
 	return;
 }
 
+//This function determines what the system call is for the current process
 void determineSystemCall(CpuPtr cpu)
 {
 	int process_type = cpu->controller->runningProcess->processType;
@@ -138,6 +146,7 @@ void determineSystemCall(CpuPtr cpu)
 	}
 }
 
+//This method determines who sent the interrupt that was sent to the CPU
 void determineInterrupt(CpuPtr cpu, int interruptType, int processID)
 {
 	switch(interruptType)

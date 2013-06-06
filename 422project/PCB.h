@@ -9,7 +9,7 @@
 #define PCB_H
 #include "process.h"
 
-#define MAX_PC 		100;
+#define MAX_PC 		25;
 
 typedef struct pcb_str {
 	int PID;
