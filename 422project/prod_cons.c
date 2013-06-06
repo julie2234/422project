@@ -25,6 +25,8 @@ void Consumer_tick(CpuPtr cpu) {
 		// Stage 2 - Attempt to write to vid.
 		} else if (mem_mut.owner == cpu->current_pcb->PID && cpu->current_pcb->currentCount <= (cpu->current_pcb->count / 2)) {
 
+			cpu->current_pcb->currentCount++;
+
 		// Stage 3 - Unlock the mutex.		
 		} else if (cpu->current_pcb->currentCount > (cpu->current_pcb->count / 2) && cpu->current_pcb->currentCount < cpu->current_pcb->count) {
 
