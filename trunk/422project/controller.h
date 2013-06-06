@@ -20,6 +20,7 @@ typedef struct controller_str {
 	QueuePtr hddQueue;
 	PcbPtr runningProcess;
 	PcbPtr interruptedProcess;
+	PcbPtr idle_process;
 } ControllerStr;
 
 typedef ControllerStr* ControllerPtr;
