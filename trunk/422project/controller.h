@@ -1,8 +1,8 @@
 /*
  *  controller.h
- *	GPOS Scheduler Simulation
+ *      GPOS Scheduler Simulation
  *  Team 8: Simerell, Trottier, Morris, Impola
- *	TCSS 422, Spring 2013
+ *      TCSS 422, Spring 2013
  */
 
 #ifndef CONTROLLER_H
@@ -19,8 +19,7 @@ typedef struct controller_str {
 	QueuePtr videoQueue;
 	QueuePtr hddQueue;
 	PcbPtr runningProcess;
-	PcbPtr interruptedProcess;
-	PcbPtr idle_process;
+	PcbPtr idleProcess;
 } ControllerStr;
 
 typedef ControllerStr* ControllerPtr;
@@ -31,8 +30,7 @@ void scheduler(ControllerPtr this);
 void IO_block(ControllerPtr controller, int IODeviceID);
 void setProcessReady(ControllerPtr controller, int IODeviceID);
 void createProcesses(int total_processes, int kb_amount, int io_amount, int pc_amount,
-		ControllerPtr controller);
+					 ControllerPtr controller);
 void printCurrentState(ControllerPtr this);
 
 #endif
-
