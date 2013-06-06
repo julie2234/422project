@@ -9,18 +9,12 @@
 #define PCB_H
 #include "process.h"
 
-// States
-#define RUNNING		0
-#define READY		1
-#define INTERRUPTED	2
-#define BLOCKED		3
 #define MAX_PC 		100;
 
 typedef struct pcb_str {
 	int PID;
 	int processType;
 	ProcessPtr process;
-	int state;
 	int count;
 	int currentCount;
 	int serviceCallValues[8];
