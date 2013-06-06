@@ -29,13 +29,14 @@ CpuPtr cpuConstruct(ControllerPtr passedInController)
 //Read this to know what nanosleep does.
 void cpuRun(CpuPtr cpu)
 {
+	int last_PID = 0;
 	int PC = cpu->controller->runningProcess->currentCount;
 	int max = MAX_PC
 	struct timespec timePerTick, timeRemaining;
 	timePerTick.tv_sec = 0;
 	timePerTick.tv_nsec = TICK_TIME;
 	
-	while(PC < max)
+	while(PC < max && run_flag == 1)
 	{
 		PC++;
 		if(PC == max - 1)
@@ -49,7 +50,7 @@ void cpuRun(CpuPtr cpu)
 			cpu->controller->runningProcess->currentCount = PC;
 		
 		int interruptIndex = 0;
-		while(interruptFlag == 1)
+		while(interruptFlag == 1 && run_flag == 1)
 		{
 			determineInterrupt(cpu, interruptList[interruptIndex], interruptProcessList[interruptIndex]);
 			
@@ -63,13 +64,16 @@ void cpuRun(CpuPtr cpu)
 		nanosleep(&timePerTick, &timeRemaining);
 		
 		int index = 0;
-		
-		if (cpu->controller->runningProcess->processType == 4) {
+
+		if (cpu->controller->runningProcess->processType == 4 && (last_PID != cpu->controller->runningProcess->processType || cpu->controller->readyQueue->count == 1)) {
 			Producer_tick(cpu);
-		} else if (cpu->controller->runningProcess->processType == 5) {
+			last_PID = cpu->controller->runningProcess->processType;
+		} else if (cpu->controller->runningProcess->processType == 5 && (last_PID != cpu->controller->runningProcess->processType || cpu->controller->readyQueue->count == 1)) {
 			Consumer_tick(cpu);
-		} else {
-			for(; index < 8; index++)
+			last_PID = cpu->controller->runningProcess->processType;
+		} else if (cpu->controller->runningProcess->processType < 4) {
+			last_PID = cpu->controller->runningProcess->processType;
+			for(; index < 8 && run_flag == 1; index++)
 			{
 				if(cpu->controller->runningProcess->serviceCallValues[index] == PC)
 				{
@@ -125,16 +129,6 @@ void determineSystemCall(CpuPtr cpu)
 			cpu->video_device_io->device_io_process = cpu->controller->runningProcess;
 			startDeviceIO(cpu->video_device_io);
 			IO_block(cpu->controller, 3);
-			break;
-		}
-		case 4:
-		{
-			//producer, not sure yet what is going to happen here
-			break;
-		}
-		case 5:
-		{
-			//consumer, same as above
 			break;
 		}
 			

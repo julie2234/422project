@@ -11,6 +11,7 @@
 #include <stdio.h>
 
 #include "timer.h"
+#include "CPU.h"
 
 int continue_ticks = 1;
 
@@ -28,12 +29,17 @@ void *tickingTimer(void* quanta)
 		//notify CPU/Controller, maybe something like
 		//interruptNotify() that would simply point out that it is
 		//time for an interrupt.
+		
 		loops++;
-		if(loops > 15)
+		if(loops >= cycles)
 		{
 			continue_ticks = 0;
 		}
+
 	}
+
+	run_flag = 0;
+
 	return 0;
 }
 

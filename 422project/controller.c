@@ -12,6 +12,7 @@
 
 #include "controller.h"
 #include "CPU.h"
+#include "prod_cons.h"
 
 ControllerPtr controllerConstruct() {
 	ControllerPtr temp_controller = (ControllerPtr) malloc (sizeof(ControllerStr));
@@ -30,8 +31,9 @@ int main (int argc, char* argv[])
 	int kb_num;
 	int io_num;
 	int pc_num;
+	int c_num;
 	
-	if(argc == 9)
+	if(argc == 11)
 	{
 		//printf("%s ", argv[1]);// -p
 		process_num = (int) strtol(argv[2], NULL, 10);
@@ -48,12 +50,19 @@ int main (int argc, char* argv[])
 		//printf("%s ", argv[7]);// -pc
 		pc_num = (int) strtol(argv[8], NULL, 10);
 		//printf("%d\n", pc_num);
+
+		//printf("%s ", argv[9]);// -c cycles
+		c_num = (int) strtol(argv[10], NULL, 10);
+		//printf("%d\n", c_num);
+		//if (c_num < 100)
+		//	c_num = 100;
+		cycles = c_num; // A global # of cycles within timer.h
 	}
 	else
 	{
 		printf("You input the incorrect parameters. To run this program, it must have "
 			   "these input paramters: \n"
-			   "-p x -k x -io x -pc x\n"
+			   "-p x -k x -io x -pc x -c x\n"
 			   "where 'x' is a number");
 		return 0;
 	}
@@ -78,8 +87,8 @@ int main (int argc, char* argv[])
 	controller->runningProcess = Queue_remove(controller->readyQueue);
 	printCurrentState(controller);
 	
-	startTimer(5);
-	
+	run_flag = 1;
+	startTimer(2);
 	CpuPtr cpu = cpuConstruct(controller);
 	cpuRun(cpu);
 	
@@ -144,9 +153,13 @@ void printCurrentState(ControllerPtr this) {
 		pos++;
 	}
 	printf("]\n");
-	printf("MUTEX_Q [ ");
-	//printf("P%d", get_mutex_process());
-	printf("]\n");
+	printf("M1 - ");
+	if (mem_mut.owner != 0) {
+		printf("P%d owns", mem_mut.owner);
+	} else {
+		printf("none owns");
+	}
+	printf("\n");
 }
 
 
