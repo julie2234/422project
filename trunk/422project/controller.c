@@ -61,17 +61,9 @@ int main (int argc, char* argv[])
 	srand(time(NULL)); //Seeds the random number generator
 	createProcesses(process_num, kb_num, io_num, pc_num, controller);
 
-//	//just for testing
-//	controller->processList[0] = pcbConstruct(0, 1);
-//	controller->processList[1] = pcbConstruct(1, 3);
-//	controller->processList[2] = pcbConstruct(2, 2);
-//	controller->processList[3] = pcbConstruct(3, 4);
-	
-
 	printf("Process Summary\n");
 	int i;
-	for (i = 0; i < process_num; i++)
-	{
+	for (i = 0; i < process_num; i++) {
 		int type = controller->processList[i]->processType;
 		printf("P%d, type %d, service calls [", controller->processList[i]->PID, type);
 		int j;
@@ -83,7 +75,6 @@ int main (int argc, char* argv[])
 	}
 	printf("\n");
 	controller->runningProcess = Queue_remove(controller->readyQueue);
-	//printf("\nP%d is running \n", controller->runningProcess->PID);
 	printCurrentState(controller);
 	
 	startTimer(5);
@@ -149,13 +140,9 @@ void printCurrentState(ControllerPtr this) {
 }
 
 
-void scheduler(ControllerPtr this)
-{
-	//printf("Process %d is out of time.", this->runningProcess->PID);
+void scheduler(ControllerPtr this) {
 	Queue_add(this->readyQueue, this->runningProcess);
 	PcbPtr process = Queue_remove(this->readyQueue);
-	//printf("\nP%d has been loaded into the registers and is now running \n", process->PID);
-	process->state = RUNNING; // change the state in its PCB to RUNNING
 	this->runningProcess = process;
 	printCurrentState(this);
 }
@@ -184,7 +171,6 @@ void IO_block(ControllerPtr controller, int IODeviceID)
 
 	controller->runningProcess = Queue_remove(controller->readyQueue);
 	printCurrentState(controller);
-	//printf("Process %d is now in the running state\n", controller->runningProcess->PID);
 }
 
 void setProcessReady(ControllerPtr controller, int IODeviceID)
