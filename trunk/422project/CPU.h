@@ -1,7 +1,7 @@
 /*
  *  CPU.h
  *	GPOS Scheduler Simulation
- *  Team 8: Simerell, Trottier, Morris, Impola
+ *  Team 8: Simrell, Trottier, Morris, Impola
  *	TCSS 422, Spring 2013
  */
 
@@ -16,7 +16,7 @@
 
 
 #define TICK_TIME 100000000L;
-#define MAX_PC 100;
+#define MAX_PC 25;
 
 #define TIMER_INTERRUPT = 0;
 #define HDD_INTERRUPT = 1;
