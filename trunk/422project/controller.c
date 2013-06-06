@@ -215,8 +215,11 @@ void setProcessReady(ControllerPtr controller, int IODeviceID)
 void createProcesses(int total_processes, int kb_amount, int io_amount, int pc_amount,
 					 ControllerPtr controller)
 {
-	controller->processList = (PcbPtr*) malloc((total_processes + 1) * sizeof(PcbPtr));
-	int cpu_bound_processes = total_processes - kb_amount - io_amount;// TODO subtract pc_amount
+	if (pc_amount > 1) {
+		pc_amount = 1;
+	}
+	controller->processList = (PcbPtr*) malloc((total_processes + 2) * sizeof(PcbPtr));
+	int cpu_bound_processes = total_processes - kb_amount - io_amount - (pc_amount * 2);
 	int processID = 0;
 	int index = 0;
 	for(; index < cpu_bound_processes; index++)
@@ -242,4 +245,11 @@ void createProcesses(int total_processes, int kb_amount, int io_amount, int pc_a
 		controller->processList[processID] = pcbConstruct(processID, index + 2);
 		processID++;
 	}
+
+	if (pc_amount > 0) {
+		controller->processList[processID] = pcbConstruct(processID, 4);
+		processID++;
+		controller->processList[processID] = pcbConstruct(processID, 5);
+	}
+
 }
