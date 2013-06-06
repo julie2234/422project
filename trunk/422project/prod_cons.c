@@ -1,4 +1,4 @@
-
+#include "prod_cons.h"
 #include "CPU.h"
 #include "mutex.h"
 #include <stdio.h>
@@ -6,7 +6,7 @@
 // Global "shared" memory.
 int mem;
 // Global condition variable.
-bool new_mem;
+int new_mem;
 // Shared memory mutex.
 struct mutex_str mem_mut;
 
@@ -14,7 +14,7 @@ void Consumer_tick(CpuPtr cpu) {
 
 	// Calculate the consumer stage. (General Contract here is that the next stage cannot be reached without the previous succeeding.)
 	// Stage 1 - Attempt to retrieve the mutex. (instant -> does not have anything to do with current count)
-	if (mem_mut.owner == 0 && new_mem) {
+	if (mem_mut.owner == 0 && new_mem == 1) {
 
 		mem_mut.owner = cpu->current_pcb->PID;
 
@@ -34,7 +34,7 @@ void Consumer_tick(CpuPtr cpu) {
 		// If not then just waste time and restart.
 		if (mem_mut.owner == cpu->current_pcb->PID) {
 			mem_mut.owner = 0;
-			new_mem = false;
+			new_mem = 0;
 		} /* else { implied do nothing but waste time. } */
 
 		cpu->current_pcb->currentCount = (cpu->current_pcb->currentCount + 1) % cpu->current_pcb->count;
@@ -59,9 +59,9 @@ void Producer_tick(CpuPtr cpu) {
 			// If it is then just waste time but count up.
 			// If it is NOT and NOT null then waste time.
 			// If it is NOT owned by anyone then get it and count up.
-		if (mem_mut.owner == cpu->current_pcb->PID && !new_mem) {
+		if (mem_mut.owner == cpu->current_pcb->PID && new_mem == 0) {
 			cpu->current_pcb->currentCount++;
-		} else if (mem_mut.owner == 0 && !new_mem) {
+		} else if (mem_mut.owner == 0 && new_mem == 0) {
 			mem_mut.owner = cpu->current_pcb->PID;
 			cpu->current_pcb->currentCount++;
 		} /* else { implied do nothing if owned by another. } */
@@ -70,7 +70,7 @@ void Producer_tick(CpuPtr cpu) {
 	} else if (cpu->current_pcb->currentCount <= (3*cpu->current_pcb->count / 4) && cpu->current_pcb->currentCount > (cpu->current_pcb->count / 2)) {
 
 		mem = cpu->current_pcb->PID;
-		new_mem = true;
+		new_mem = 1;
 
 	// Stage 4 - Release the mutex and restart.
 	} else if (cpu->current_pcb->currentCount <= cpu->current_pcb->count && cpu->current_pcb->currentCount > (3*cpu->current_pcb->count / 3)) {
