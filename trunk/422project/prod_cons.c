@@ -1,7 +1,7 @@
 
-#include "prod_cons.h"
 #include "CPU.h"
 #include "mutex.h"
+#include <stdio.h>
 
 // Global "shared" memory.
 int mem;
@@ -13,35 +13,33 @@ struct mutex_str mem_mut;
 void Consumer_tick(CpuPtr cpu) {
 
 	// Calculate the consumer stage. (General Contract here is that the next stage cannot be reached without the previous succeeding.)
-	
-	// Stage 1 - If new data waiting then attempt to retrieve the mutex.
-	if (new_mem) {
+	// Stage 1 - Attempt to retrieve the mutex. (instant -> does not have anything to do with current count)
+	if (mem_mut.owner == 0 && new_mem) {
 
-		// Stage 1 - Attempt to retrieve the mutex. (instant -> does not have anything to do with current count)
-		if (mem_mut.owner == 0) {
+		mem_mut.owner = cpu->current_pcb->PID;
 
-			mem_mut.owner = cpu->current_pcb->PID;
+	// Stage 2 - Attempt to write to vid.
+	} else if (mem_mut.owner == cpu->current_pcb->PID && cpu->current_pcb->currentCount <= (cpu->current_pcb->count / 2)) {
 
-		// Stage 2 - Attempt to write to vid.
-		} else if (mem_mut.owner == cpu->current_pcb->PID && cpu->current_pcb->currentCount <= (cpu->current_pcb->count / 2)) {
+		cpu->current_pcb->currentCount++;
 
-			cpu->current_pcb->currentCount++;
+		if (cpu->current_pcb->currentCount == 1)
+			sprintf("Consumer[%d] Output -> %d", cpu->current_pcb->PID, mem);
 
-		// Stage 3 - Unlock the mutex.		
-		} else if (cpu->current_pcb->currentCount > (cpu->current_pcb->count / 2) && cpu->current_pcb->currentCount < cpu->current_pcb->count) {
 
-			// If the lock is still owned by me-unlock it and increment.
-			// If not then just waste time and restart.
-			if (mem_mut.owner == cpu->current_pcb->PID) {
-				mem_mut.owner = 0;
-				new_mem = false;
-			} /* else { implied do nothing but waste time. } */
+	// Stage 3 - Unlock the mutex.		
+	} else if (cpu->current_pcb->currentCount > (cpu->current_pcb->count / 2) && cpu->current_pcb->currentCount < cpu->current_pcb->count) {
 
-			cpu->current_pcb->currentCount = (cpu->current_pcb->currentCount + 1) % cpu->current_pcb->count;
+		// If the lock is still owned by me-unlock it and increment.
+		// If not then just waste time and restart.
+		if (mem_mut.owner == cpu->current_pcb->PID) {
+			mem_mut.owner = 0;
+			new_mem = false;
+		} /* else { implied do nothing but waste time. } */
 
-		}
+		cpu->current_pcb->currentCount = (cpu->current_pcb->currentCount + 1) % cpu->current_pcb->count;
 
-	} /* else { implied do nothing... } */
+	} /* else { implied do nothing } */
 
 }
 
