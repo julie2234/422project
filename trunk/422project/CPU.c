@@ -71,12 +71,12 @@ void cpuRun(CpuPtr cpu)
 		{
 			determineInterrupt(cpu, interruptList[interruptIndex], interruptProcessList[interruptIndex]);
 
-			interruptIndex++;
 			if(interruptListSize == interruptIndex) //Check to see if there are more interrupts waiting
 			{
 				interruptFlag = 0;
 				interruptListSize = 0;
 			}
+      interruptIndex++;
 		}
 		nanosleep(&timePerTick, &timeRemaining);
 
