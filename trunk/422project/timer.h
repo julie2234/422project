@@ -8,6 +8,8 @@
 #ifndef TIMER_H
 #define TIMER_H
 
+int cycles;
+
 void *tickingTimer(void* quanta);
 void startTimer(int quanta);
 

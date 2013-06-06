@@ -14,7 +14,7 @@ PcbPtr pcbConstruct(int the_PID, int the_processType) {
 	temp_pcb->PID = the_PID;
 	temp_pcb->processType = the_processType;
 	temp_pcb->process = processContruct(the_PID, the_processType);
-	temp_pcb->count = 25;	// initialize count to a random number
+	temp_pcb->count = 6;	// initialize count to a random number
 	temp_pcb->currentCount = 0;
 	int i;
 	int max_pc = MAX_PC;

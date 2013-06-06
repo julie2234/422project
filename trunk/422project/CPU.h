@@ -23,6 +23,8 @@
 #define VIDEO_INTERRUPT = 2;
 #define CPU_H
 
+int run_flag;
+
 typedef struct cpu_str
 {
 	PcbPtr current_pcb;
