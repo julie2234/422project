@@ -6,6 +6,7 @@
  */
 
 #include "CPU.h"
+#include "prod_cons.h"
 
 int interruptFlag = 0;
 int interruptList[5]; //For interrupts that happen during other interrupts
@@ -44,7 +45,8 @@ void cpuRun(CpuPtr cpu)
 		//This could be unnecessary, but I don't think
 		//we want to have to worry about what the PC value is
 		//for a process somewhere else when this process get's interrupted.
-		cpu->controller->runningProcess->currentCount = PC;
+		if (cpu->controller->runningProcess->processType < 4)
+			cpu->controller->runningProcess->currentCount = PC;
 		
 		int interruptIndex = 0;
 		while(interruptFlag == 1)
@@ -62,13 +64,18 @@ void cpuRun(CpuPtr cpu)
 		
 		int index = 0;
 		
-		
-		for(; index < 8; index++)
-		{
-			if(cpu->controller->runningProcess->serviceCallValues[index] == PC)
+		if (cpu->controller->runningProcess->processType == 4) {
+			Producer_tick(cpu);
+		} else if (cpu->controller->runningProcess->processType == 5) {
+			Consumer_tick(cpu);
+		} else {
+			for(; index < 8; index++)
 			{
-				//call deviceIO service routine
-				determineSystemCall(cpu);
+				if(cpu->controller->runningProcess->serviceCallValues[index] == PC)
+				{
+					//call deviceIO service routine
+					determineSystemCall(cpu);
+				}
 			}
 		}
 	}
