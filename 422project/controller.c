@@ -19,6 +19,7 @@ ControllerPtr controllerConstruct() {
 	temp_controller->kbQueue = Queue_construct();
 	temp_controller->hddQueue = Queue_construct();
 	temp_controller->videoQueue = Queue_construct();
+	temp_controller->idle_process = pcbConstruct(583, -1);
 	return temp_controller;
 }
 
@@ -63,7 +64,8 @@ int main (int argc, char* argv[])
 
 	printf("Process Summary\n");
 	int i;
-	for (i = 0; i < process_num; i++) {
+	for (i = 0; i < process_num; i++)
+	{
 		int type = controller->processList[i]->processType;
 		printf("P%d, type %d, service calls [", controller->processList[i]->PID, type);
 		int j;
@@ -82,25 +84,37 @@ int main (int argc, char* argv[])
 	CpuPtr cpu = cpuConstruct(controller);
 	cpuRun(cpu);
 
-	pthread_exit(NULL);
+	//pthread_exit(NULL);
 	return 0;
 }
 
 void printCurrentState(ControllerPtr this) {
 	int i;
-	printf("RUNNING [ P%d ]\n", this->runningProcess->PID);
-	printf("READY_Q [ ");
-	int pos = this->readyQueue->head;
-	int size = this->readyQueue->count;
-	int max = this->readyQueue->max;
-	for (i = 0; i < size; i++) {
-		if (pos >= max) {
-			pos = 0;
-		}
-		printf("P%d ", this->readyQueue->pcbs[pos]->PID);
-		pos++;
+	int pos;
+	int size;
+	int max;
+	if(this->runningProcess->PID == 583) //Idle Process ID is 583
+	{
+		printf("RUNNING IDLE PROCESS\n");
+		printf("RUNNING [EMPTY]\n");
 	}
-	printf("]\n");
+	else
+	{
+		printf("RUNNING [ P%d ]\n", this->runningProcess->PID);
+
+		printf("READY_Q [ ");
+		pos = this->readyQueue->head;
+		size = this->readyQueue->count;
+		max = this->readyQueue->max;
+		for (i = 0; i < size; i++) {
+			if (pos >= max) {
+				pos = 0;
+			}
+			printf("P%d ", this->readyQueue->pcbs[pos]->PID);
+			pos++;
+		}
+		printf("]\n");
+	}
 	printf("KB_Q    [ ");
 	pos = this->kbQueue->head;
 	size = this->kbQueue->count;
@@ -169,7 +183,16 @@ void IO_block(ControllerPtr controller, int IODeviceID)
 			   controller->runningProcess->PID);
 	}
 
-	controller->runningProcess = Queue_remove(controller->readyQueue);
+	if(controller->readyQueue->count == 0)
+	{
+		controller->idle_process->currentCount = 0;
+		controller->runningProcess = controller->idle_process;
+	}
+	else
+	{
+		controller->runningProcess = Queue_remove(controller->readyQueue);
+	}
+
 	printCurrentState(controller);
 }
 

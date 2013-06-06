@@ -44,7 +44,21 @@ void cpuRun(CpuPtr cpu)
 		if(PC == max)
 		{
 			printf("P%d has finished\n", cpu->controller->runningProcess->PID);
-			cpu->controller->runningProcess = Queue_remove(cpu->controller->readyQueue);
+			if(cpu->controller->readyQueue->count == 0)
+			{
+				cpu->controller->idle_process->currentCount = 0;
+				cpu->controller->runningProcess = cpu->controller->idle_process;
+
+				if(cpu->controller->runningProcess->PID == cpu->controller->idle_process->PID)
+				{
+					return;
+				}
+
+			}
+			else
+			{
+				cpu->controller->runningProcess = Queue_remove(cpu->controller->readyQueue);
+			}
 			PC = cpu->controller->runningProcess->currentCount;
 		}
 		//This could be unnecessary, but I don't think
@@ -154,6 +168,10 @@ void determineInterrupt(CpuPtr cpu, int interruptType, int processID)
 		case 0: // timer interrupt
 		{
 			printf("------------------------------\nTimer Interrupt\n------------------------------\n");
+			if(processID == 583)
+			{
+				break;
+			}
 			scheduler(cpu->controller);
 			break;
 		}
@@ -161,7 +179,7 @@ void determineInterrupt(CpuPtr cpu, int interruptType, int processID)
 		case 1: //KB interrupt
 		{
 			char key_press = getKeyPress();
-      printf("------------------------------\nKB I/O Interrupt - %c key pressed, ", key_press);
+			printf("------------------------------\nKB I/O Interrupt - %c key pressed, ", key_press);
 			setProcessReady(cpu->controller, 1);
 			break;
 		}
@@ -187,6 +205,6 @@ void determineInterrupt(CpuPtr cpu, int interruptType, int processID)
 			//do nothing
 		}
 	}
-	interruptFlag = 0;
+	//interruptFlag = 0;
 }
 
