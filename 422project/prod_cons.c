@@ -1,7 +1,33 @@
 #include "prod_cons.h"
+#include "condVar.h"
 #include "CPU.h"
 #include "mutex.h"
 #include <stdio.h>
+
+int first_run = 1;
+
+void setupConditions() {
+	mem_mut = mutexConstruct();
+	cond_new_mem = condVarConstruct(mem_mut, C1);
+	cond_no_mem = condVarConstruct(mem_mut, C2);
+	// Initially signal for no mem.
+	CondVar_signal(cond_no_mem);
+}
+
+void destructConditions() {
+	if (cond_new_mem != 0) {
+		free(cond_new_mem);
+		cond_new_mem = 0;
+	}
+	if (cond_no_mem != 0) {
+		free(cond_no_mem);
+		cond_no_mem = 0;
+	}
+	if (mem_mut != 0) {
+		free(mem_mut);
+		mem_mut = 0;
+	}
+}
 
 void Consumer_tick(CpuPtr cpu) {
 
@@ -9,6 +35,42 @@ void Consumer_tick(CpuPtr cpu) {
 
 	printf("----------------------------------------\nConsumerTick_currentCount[%d/%d]...\n", current->currentCount, current->count);
 
+	// If the consumer does not have the mutex then attempt to get it.
+	if (mem_mut->owner != current->PID) {
+		CondVar_wait(cond_new_mem, current);
+	}
+
+	
+	// If the consumer has the mutex pointer then display that it has retrieved it.
+	if (mem_mut->owner == current->PID && current->currentCount == 0) {
+		printf("Consumer has recieved the mutex lock\n");
+		current->currentCount++;
+	} else if (mem_mut->owner == current->PID && current->currentCount <= (current->count / 2)) {
+
+		// Write to vid.
+		current->currentCount++;
+
+		if (current->currentCount == 1)
+			printf("Consumer[%d] Output -> %d\n", current->PID, mem);
+
+	} else if (mem_mut->owner == current->PID && current->currentCount > (current->count / 2)) {
+
+		CondVar_signal(cond_no_mem);
+		Mutex_unlock(mem_mut, current);
+		//mem_mut.owner = 0;
+		//new_mem = 0;
+		current->currentCount = 0;
+		printf("Consumer has passed back the lock and signaled no data\n");
+
+	} else {
+
+		printf("Consumer is waiting for new mem condition...\n");
+
+	}
+	
+	printf("----------------------------------------\n");
+
+	/*
 	// Calculate the consumer stage. (General Contract here is that the next stage cannot be reached without the previous succeeding.)
 	// Stage 1 - Attempt to retrieve the mutex. (instant -> does not have anything to do with current count)
 	if (mem_mut.owner == 0 && new_mem == 1) {
@@ -42,12 +104,58 @@ void Consumer_tick(CpuPtr cpu) {
 	}
 
 	printf("----------------------------------------\n");
-
+	*/
 }
 
 void Producer_tick(CpuPtr cpu) {
 
 	PcbPtr current = cpu->controller->runningProcess;
+
+	printf("----------------------------------------\nProducerTick_currentCount[%d/%d]...\n", current->currentCount, current->count);
+
+	// If the producer does not have the mutex then attempt to get it.
+	if (first_run == 1) {
+		// Obtain the mutex lock on first run to seed the program.
+		Mutex_lock(mem_mut, current);
+		first_run = 0;
+	} else if (mem_mut->owner != current->PID) {
+		CondVar_wait(cond_no_mem, current);
+	}
+	
+	if (mem_mut->owner == current->PID && current->currentCount == 0) {
+
+		printf("Producer retrieved mutex.\n");
+		current->currentCount++;
+
+	} else if (mem_mut->owner == current->PID && current->currentCount == 1) {
+
+		if (current->currentCount == 1) {
+			printf("Producer writing data...\n");
+			mem = current->PID;
+		} else {
+			printf("Producer wasting time after data writing...\n");
+		}
+
+		current->currentCount++;
+
+	} else if (mem_mut->owner == current->PID && current->currentCount == 2) {
+
+		printf("Producer unlocking mutex and signalling new data...\n");
+		CondVar_signal(cond_new_mem);
+		Mutex_unlock(mem_mut, current);
+
+		current->currentCount = 0;
+
+	} else {
+
+		printf("Producer waiting for no data condition...\n");
+
+	}
+	
+	printf("----------------------------------------\n");
+	
+	
+	/*
 
 	// Calculate the producer stage. (General Contract here is that the next stage cannot be reached without the previous succeeding.)
 	printf("----------------------------------------\nProducerTick_currentCount[%d/%d]...\n", current->currentCount, current->count);
@@ -102,5 +210,5 @@ void Producer_tick(CpuPtr cpu) {
 	}
 
 	printf("----------------------------------------\n");
-	
+	*/
 }
