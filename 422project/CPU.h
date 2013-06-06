@@ -1,8 +1,8 @@
 /*
  *  CPU.h
- *	GPOS Scheduler Simulation
- *  Team 8: Simrell, Trottier, Morris, Impola
- *	TCSS 422, Spring 2013
+ *      GPOS Scheduler Simulation
+ *  Team 8: Simerell, Trottier, Morris, Impola
+ *      TCSS 422, Spring 2013
  */
 
 #ifndef CPU_H
@@ -16,7 +16,7 @@
 
 
 #define TICK_TIME 100000000L;
-#define MAX_PC 25;
+#define MAX_PC 100;
 
 #define TIMER_INTERRUPT = 0;
 #define HDD_INTERRUPT = 1;
@@ -29,7 +29,7 @@ typedef struct cpu_str
 	ControllerPtr controller;
 	DeviceIO hdd_device_io;
 	DeviceIO video_device_io;
-
+	
 } CpuStr;
 
 typedef CpuStr* CpuPtr;
@@ -41,4 +41,3 @@ void determineInterrupt(CpuPtr cpu, int interruptType, int processID);
 void setInterrupt(int interruptID, int processID);
 
 #endif
-
