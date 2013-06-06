@@ -144,6 +144,9 @@ void printCurrentState(ControllerPtr this) {
 		pos++;
 	}
 	printf("]\n");
+	printf("MUTEX_Q [ ");
+	//printf("P%d", get_mutex_process());
+	printf("]\n");
 }
 
 

@@ -10,18 +10,22 @@ int new_mem;
 // Shared memory mutex.
 struct mutex_str mem_mut;
 
+int get_mutex_process() {
+	return mem_mut.owner;
+}
+
 void Consumer_tick(CpuPtr cpu) {
 
 	PcbPtr current = cpu->controller->runningProcess;
 
-	printf("ConsumerTick_currentCount[%d]...\n", current->currentCount);
+	//printf("ConsumerTick_currentCount[%d]...\n", current->currentCount);
 
 	// Calculate the consumer stage. (General Contract here is that the next stage cannot be reached without the previous succeeding.)
 	// Stage 1 - Attempt to retrieve the mutex. (instant -> does not have anything to do with current count)
 	if (mem_mut.owner == 0 && new_mem == 1) {
 
 		mem_mut.owner = current->PID;
-		printf("Consumer has recieved the mutex lock\n");
+		//printf("Consumer has recieved the mutex lock\n");
 
 	// Stage 2 - Attempt to write to vid.
 	} else if (mem_mut.owner == current->PID && current->currentCount <= (current->count / 2)) {
@@ -29,7 +33,7 @@ void Consumer_tick(CpuPtr cpu) {
 		current->currentCount++;
 
 		if (current->currentCount == 1)
-			printf("Consumer[%d] Output -> %d\n", current->PID, mem);
+			printf("------------------------------\nConsumer[P%d] Output -> %d\n------------------------------\n", current->PID, mem);
 
 
 	// Stage 3 - Unlock the mutex.		
@@ -44,10 +48,10 @@ void Consumer_tick(CpuPtr cpu) {
 
 		current->currentCount = (current->currentCount + 1) % current->count;
 
-		printf("Consumer has passed back the lock\n");
+		//printf("Consumer has passed back the lock\n");
 
 	} else { 
-		printf("Consumer waiting for data...\n");
+		//printf("Consumer waiting for data...\n");
 	}
 
 }
@@ -57,11 +61,11 @@ void Producer_tick(CpuPtr cpu) {
 	PcbPtr current = cpu->controller->runningProcess;
 
 	// Calculate the producer stage. (General Contract here is that the next stage cannot be reached without the previous succeeding.)
-	printf("ProducerTick_currentCount[%d/%d]...\n", current->currentCount, current->count);
+	//printf("ProducerTick_currentCount[%d/%d]...\n", current->currentCount, current->count);
 	// Stage 1 - Do nothing here but increase count (for the number display).
 	if (current->currentCount <= (current->count / 4)) { 
 		
-		printf("Producer wasting time [%d/%d]...\n", current->currentCount, current->count);
+		//printf("Producer wasting time [%d/%d]...\n", current->currentCount, current->count);
 		current->currentCount++;
 
 	// Stage 2 - Try and obtain a lock to the mutex.
@@ -73,13 +77,13 @@ void Producer_tick(CpuPtr cpu) {
 			// If it is NOT owned by anyone then get it and count up.
 		if (mem_mut.owner == current->PID && new_mem == 0) {
 			current->currentCount++;
-			printf("Producer waiting to retrieve mutex...\n");
+			//printf("Producer waiting to retrieve mutex...\n");
 		} else if (mem_mut.owner == 0 && new_mem == 0) {
 			mem_mut.owner = current->PID;
 			current->currentCount++;
-			printf("Producer has received mutex lock\n");
+			//printf("Producer has received mutex lock\n");
 		} else { 
-			printf("Producer busy waiting...\n");
+			//printf("Producer busy waiting...\n");
 		}
 
 	// Stage 3 - Save the data (PID or something) to the shared bit of memory.
@@ -88,7 +92,7 @@ void Producer_tick(CpuPtr cpu) {
 		mem = current->PID;
 		new_mem = 1;
 		current->currentCount++;
-		printf("Producer has written data\n");
+		//printf("Producer has written data\n");
 
 
 	// Stage 4 - Release the mutex and restart.
@@ -99,9 +103,9 @@ void Producer_tick(CpuPtr cpu) {
 			// If it is not (or not owned at all) just keep counting... wasting time.
 		if (mem_mut.owner == current->PID) {
 			mem_mut.owner = 0;
-			printf("Producer has unlocked mutex\n");
+			//printf("Producer has unlocked mutex\n");
 		} else {
-			printf("Producer is busy waiting...");
+			//printf("Producer is busy waiting...");
 		}
 		
 		current->currentCount = (current->currentCount + 1) % current->count;
