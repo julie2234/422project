@@ -10,16 +10,23 @@
 
 #include "CPU.h"
 #include "mutex.h"
+#include "condVar.h"
 
 // Global "shared" memory.
 int mem;
 // Global condition variable.
-int new_mem;
+//int new_mem;
 // Shared memory mutex.
-struct mutex_str mem_mut;
+//struct mutex_str mem_mut;
+
+MutexPtr mem_mut;
+CondVarPtr cond_new_mem;
+CondVarPtr cond_no_mem;
 
 // nothing
 void Producer_tick(CpuPtr);
 void Consumer_tick(CpuPtr);
+void setupConditions();
+void destructConditions();
 
 #endif
