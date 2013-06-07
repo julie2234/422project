@@ -1,8 +1,8 @@
 /*
  *  controller.c
- *      GPOS Scheduler Simulation
- *  Team 8: Simerell, Trottier, Morris, Impola
- *      TCSS 422, Spring 2013
+ *	GPOS Scheduler Simulation
+ *  Team 8: Simrell, Trottier, Morris, Impola
+ *	TCSS 422, Spring 2013
  */
 
 #include <stdio.h>
