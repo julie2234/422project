@@ -179,5 +179,5 @@ void determineInterrupt(CpuPtr cpu, int interruptType, int processID)
 			//do nothing
 		}
 	}
-	interruptFlag = 0;
+	//interruptFlag = 0;
 }
