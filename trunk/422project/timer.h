@@ -1,8 +1,8 @@
 /*
- * timer.h
- *
- *  Created on: Jun 1, 2013
- *      Author: tyler
+ *  timer.h
+ *	GPOS Scheduler Simulation
+ *  Team 8: Simrell, Trottier, Morris, Impola
+ *	TCSS 422, Spring 2013
  */
 
 #ifndef TIMER_H

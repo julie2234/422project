@@ -1,7 +1,7 @@
 /*
  *  mutex.h
  *	GPOS Scheduler Simulation
- *  Team 8: Simerell, Trottier, Morris, Impola
+ *  Team 8: Simrell, Trottier, Morris, Impola
  *	TCSS 422, Spring 2013
  */
 
